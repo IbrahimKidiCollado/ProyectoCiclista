@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\CiclistaModel;
 use Illuminate\Http\Request;
 
 class CiclistaController extends Controller
