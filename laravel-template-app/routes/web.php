@@ -12,7 +12,7 @@ use App\Http\Controllers\ResultadosEntrenamientoController;
 use App\Http\Controllers\SesionesBloquesEntrenamientoController;
 
 Route::get('/', function () {
-  return view('login');
+    return view('login');
 });
 // web.php
 Route::post('/login-test', function () {
@@ -59,32 +59,3 @@ Route::get('/resultado/{id}', [ResultadosEntrenamientoController::class, 'listar
 Route::get('/sesionbloque', [SesionesBloquesEntrenamientoController::class, 'listarSesionesBloques'])->name('sesionbloque.listar');
 Route::post('/sesionbloque/crear', [SesionesBloquesEntrenamientoController::class, 'crearSesionBloque'])->name('sesionbloque.crear');
 Route::delete('/sesionbloque/{id}', [SesionesBloquesEntrenamientoController::class, 'borrarSesionBloque'])->name('sesionbloque.eliminar');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
-Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
-Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
-Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
-Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
-Route::get('/ejemplo', [EjemploController::class, 'index']);
-Route::get('/api/articles', [ArticleController::class, 'listArticlesAPI'])->name('articles.listArticles');
-Route::get('/api/articles/{id}', [ArticleController::class, 'listADetailArticleAPI'])->name('articles.listArticle');
-Route::delete('/api/articles/{id}', [ArticleController::class, 'deleteArticleAPI'])->name('articles.deleteArticleAPI');
-
