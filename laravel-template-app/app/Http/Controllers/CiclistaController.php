@@ -18,11 +18,15 @@ class CiclistaController extends Controller
         ]);
     }
 
-    public function listarCiclistaID($id)
+    public function listarCiclistaID(Request $request, $id)
     {
         $ciclista = CiclistaModel::find($id);
 
-        return response()->json($ciclista);
+        return response()->json([
+            'accion' => 'acceder a los ciclistas',
+            'status' => 'ok',
+            'listado de ciclistas' =>$ciclista
+        ]);
     }
 }
 

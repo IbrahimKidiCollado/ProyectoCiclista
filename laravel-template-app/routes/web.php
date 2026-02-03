@@ -31,7 +31,7 @@ Route::post('/register', [LoginControllerAPI::class, 'darseAlta'])->name('regist
 
 //RUTAS PARA CICLISTA
 Route::get('/ciclistas', [CiclistaController::class, 'listarCiclistas'])->name('ciclistas.listar');
-Route::get('/ciclista/historial', [CiclistaController::class, 'listarCiclistaID'])->name('ciclista.listar');
+Route::get('/ciclista/historial/{id}', [CiclistaController::class, 'listarCiclistaID'])->name('ciclista.listar');
 
 
 //RUTAS PARA LOS BLOQUES DE ENTRENAMIENTO
