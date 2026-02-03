@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\CiclistaModel;
 use Illuminate\Http\Request;
 
@@ -8,14 +9,16 @@ class CiclistaController extends Controller
 {
     public function listarCiclistas()
     {
-        return response()->json([
-            'accion' => 'listar ciclistas'
-        ]);
+        $ciclistas = CiclistaModel::all();
+
+        return response()->json($ciclistas);
     }
-    public function listarCiclistaID()
+
+    public function listarCiclistaID($id)
     {
-        return response()->json([
-            'accion' => 'listar historial ciclista'
-        ]);
+        $ciclista = CiclistaModel::find($id);
+
+        return response()->json($ciclista);
     }
 }
+

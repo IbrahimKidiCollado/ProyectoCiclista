@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\EjemploController;
 
 use App\Http\Controllers\LoginControllerAPI;
+use App\Http\Controllers\CiclistaController;
 use App\Http\Controllers\BloquesEntrenamientoController;
 use App\Http\Controllers\PlanesEntrenamientoController;
 use App\Http\Controllers\SesionesEntrenamientoController;
@@ -29,8 +30,8 @@ Route::post('/logout', [LoginControllerAPI::class, 'cerrarSesion'])->name('logou
 Route::post('/register', [LoginControllerAPI::class, 'darseAlta'])->name('register.alta');
 
 //RUTAS PARA CICLISTA
-Route::post('/ciclistas', [CiclistaController::class, 'listarCiclistas'])->name('ciclistas.listar');
-Route::post('/ciclista/historial', [CiclistaController::class, 'listarCiclistaID'])->name('ciclista.listar');
+Route::get('/ciclistas', [CiclistaController::class, 'listarCiclistas'])->name('ciclistas.listar');
+Route::get('/ciclista/historial', [CiclistaController::class, 'listarCiclistaID'])->name('ciclista.listar');
 
 
 //RUTAS PARA LOS BLOQUES DE ENTRENAMIENTO
