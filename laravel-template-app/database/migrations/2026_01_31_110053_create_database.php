@@ -14,6 +14,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('ciclista', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('nombre', 80);
             $table->string('apellidos', 80);
@@ -22,6 +23,7 @@ class CreateDatabase extends Migration
             $table->integer('altura_base')->nullable();
             $table->string('email', 80)->unique();
             $table->string('password', 255);
+            $table->timestamps();
         });
 
         /*
@@ -30,6 +32,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('historico_ciclista', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
 
             $table->foreignId('id_ciclista')
@@ -47,10 +50,7 @@ class CreateDatabase extends Migration
             $table->decimal('vo2max', 4, 1)->nullable();
             $table->string('comentario', 255)->nullable();
 
-            $table->unique(
-                ['id_ciclista', 'fecha'],
-                'uq_ciclista_fecha'
-            );
+            $table->unique(['id_ciclista', 'fecha'], 'uq_ciclista_fecha');
         });
 
         /*
@@ -59,6 +59,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('plan_entrenamiento', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
 
             $table->foreignId('id_ciclista')
@@ -72,6 +73,7 @@ class CreateDatabase extends Migration
             $table->date('fecha_fin');
             $table->string('objetivo', 100)->nullable();
             $table->boolean('activo')->default(true);
+            $table->timestamps();
         });
 
         /*
@@ -80,6 +82,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('bloque_entrenamiento', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('nombre', 100);
             $table->string('descripcion', 255)->nullable();
@@ -98,6 +101,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('sesion_entrenamiento', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
 
             $table->foreignId('id_plan')
@@ -109,6 +113,7 @@ class CreateDatabase extends Migration
             $table->string('nombre', 100)->nullable();
             $table->string('descripcion', 255)->nullable();
             $table->boolean('completada')->default(false);
+            $table->timestamps();
         });
 
         /*
@@ -117,6 +122,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('sesion_bloque', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
 
             $table->foreignId('id_sesion_entrenamiento')
@@ -139,6 +145,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('tipo_componente', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('nombre', 50)->unique();
             $table->string('descripcion', 255)->nullable();
@@ -150,10 +157,12 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('bicicleta', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('nombre', 50);
             $table->enum('tipo', ['carretera', 'mtb', 'gravel', 'rodillo']);
             $table->string('comentario', 255)->nullable();
+            $table->timestamps();
         });
 
         /*
@@ -162,6 +171,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('componentes_bicicleta', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
 
             $table->foreignId('id_bicicleta')
@@ -186,10 +196,7 @@ class CreateDatabase extends Migration
             $table->boolean('activo')->default(true);
             $table->string('comentario', 255)->nullable();
 
-            $table->index(
-                ['id_bicicleta', 'id_tipo_componente', 'activo'],
-                'idx_componentes_activos'
-            );
+            $table->index(['id_bicicleta', 'id_tipo_componente', 'activo'], 'idx_componentes_activos');
         });
 
         /*
@@ -198,6 +205,7 @@ class CreateDatabase extends Migration
         |--------------------------------------------------
         */
         Schema::create('entrenamiento', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
 
             $table->foreignId('id_ciclista')
@@ -229,6 +237,7 @@ class CreateDatabase extends Migration
             $table->decimal('factor_intensidad_if', 4, 3)->nullable();
             $table->integer('ascenso_metros')->nullable();
             $table->string('comentario', 255)->nullable();
+            $table->timestamps();
 
             $table->index(['id_ciclista', 'fecha'], 'idx_ciclista_fecha');
             $table->index(['fecha'], 'idx_fecha');
@@ -248,4 +257,4 @@ class CreateDatabase extends Migration
         Schema::dropIfExists('historico_ciclista');
         Schema::dropIfExists('ciclista');
     }
-};
+}
