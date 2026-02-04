@@ -1,63 +1,27 @@
-/* Tarjeta del formulario */
-.auth-card {
-    background: var(--white);
-    padding: 40px;
-    width: 100%;
-    max-width: 420px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-}
-
-.auth-card h2 {
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    color: var(--text-dark);
-}
-
-/* Grupos de entrada */
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #eee;
-    border-radius: var(--border-radius);
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus {
-    border-color: var(--primary-color);
-}
-
-/* Enlaces y cambio de vista */
-.auth-footer {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.auth-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.auth-link:hover {
-    text-decoration: underline;
-}
-
-/* Utilidad para ocultar formularios */
 .hidden {
     display: none;
+}
+
+.form-box {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Diferenciación visual opcional para el botón de registro */
+.register-form .btn {
+    background-color: #28a745;
+}
+
+.register-form .btn:hover {
+    background-color: #218838;
 }
