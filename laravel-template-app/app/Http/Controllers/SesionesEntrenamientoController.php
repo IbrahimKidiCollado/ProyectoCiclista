@@ -20,24 +20,30 @@ class SesionesEntrenamientoController extends Controller
 
     public function crearsesion(Request $request)
     {
+        $sesion = SesionesEntrenamiento::create($request->all());
+
         return response()->json([
-            'accion' => 'crear sesion'
+            'accion' => 'sesion creada correctamente'
         ]);
     }
 
     public function listarsesionID($id)
     {
+        $sesion = SesionesEntrenamiento::findOrFail($id);
         return response()->json([
             'accion' => 'ver sesion',
-            'id' => $id
+            'sesion: ' => $sesion
         ]);
     }
 
     public function eliminarsesion($id)
     {
+
+        $sesion = SesionesEntrenamiento::findOrFail($id);
+        $sesion->delete();
+
         return response()->json([
-            'accion' => 'eliminar sesion',
-            'id' => $id
+            'accion' => 'sesion eliminada correctamente'
         ]);
     }
 }
