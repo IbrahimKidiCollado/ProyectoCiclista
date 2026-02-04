@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SesionesEntrenamiento;
+
 
 class SesionesEntrenamientoController extends Controller
 {
     public function listarsesiones()
     {
+        $sesiones = SesionesEntrenamiento::all();
+
         return response()->json([
-            'accion' => 'listar sesiones'
+            'status' => 'ok',
+            'listado de sesiones'
         ]);
     }
 
