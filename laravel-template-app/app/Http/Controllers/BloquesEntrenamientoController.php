@@ -8,33 +8,42 @@ class BloquesEntrenamientoController extends Controller
 {
     public function listarBloques()
     {
+        $bloques = BloqueEntrenamiento::all();
+
         return response()->json([
-            'accion' => 'listar bloques',
-            'status' => 'ok'
+            'status' => 'ok',
+            'listado de bloques: ' => $bloques
         ]);
     }
 
     public function crearBloque(Request $request)
     {
+        $bloque = BloqueEntrenamiento::create($request->all());
+
         return response()->json([
-            'accion' => 'crear bloque',
-            'status' => 'ok'
+            'status' => 'ok',
+            'accion' => 'bloque creado'
         ]);
     }
 
     public function listarBloqueID($id)
     {
+        $bloque = BloqueEntrenamiento::findOrFail($id);
+
         return response()->json([
-            'accion' => 'ver bloque',
-            'id' => $id
+            'status' => 'ok',
+            'bloque: ' => $bloque
         ]);
     }
 
     public function eliminarBloque($id)
     {
+        $bloque = BloqueEntrenamiento::findOrFail($id);
+        $bloque->delete();
+
         return response()->json([
-            'accion' => 'eliminar bloque',
-            'id' => $id
+            'status' => 'ok',
+            'accion' => 'eliminado correctamente'
         ]);
     }
 }
