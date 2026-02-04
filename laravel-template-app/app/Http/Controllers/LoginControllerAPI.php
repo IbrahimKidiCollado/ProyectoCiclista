@@ -8,10 +8,7 @@ class LoginControllerAPI extends Controller
 {
     public function comprobarCredenciales(Request $request)
     {
-        return response()->json([
-            'accion' => 'login',
-            'status' => 'ok'
-        ]);
+        return view('index');
     }
 
     public function cerrarSesion()
