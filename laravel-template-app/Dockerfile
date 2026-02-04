@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+﻿FROM php:7.4-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
@@ -32,3 +32,4 @@ RUN mkdir -p /home/$user/.composer && \
 WORKDIR /var/www
 
 USER $user
+
