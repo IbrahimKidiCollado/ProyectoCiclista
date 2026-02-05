@@ -14,7 +14,7 @@ class CiclistaController extends Controller
         return response()->json([
             'accion' => 'acceder a los ciclistas',
             'status' => 'ok',
-            'listado de ciclistas' =>$ciclistas
+            'ciclistas' =>$ciclistas
         ]);
     }
 
@@ -25,7 +25,7 @@ class CiclistaController extends Controller
         return response()->json([
             'accion' => 'acceder a los ciclistas',
             'status' => 'ok',
-            'listado de ciclistas' =>$ciclista
+            'ciclista' =>$ciclista
         ]);
     }
 }

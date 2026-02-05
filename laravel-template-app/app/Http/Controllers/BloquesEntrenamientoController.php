@@ -12,7 +12,7 @@ class BloquesEntrenamientoController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'listado de bloques: ' => $bloques
+            'bloques: ' => $bloques
         ]);
     }
 
@@ -43,7 +43,7 @@ class BloquesEntrenamientoController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'bloque: ' => $bloque
+            'bloque' => $bloque
         ]);
     }
 

@@ -17,4 +17,13 @@ class SesionesEntrenamientoModel extends Model
     ];
 
     public $timestamps = false;
+
+    //Relacion de una sesion con un Entrenamiento
+    public function plan()
+    {
+        return $this->belongsTo(
+            PlanEntrenamiento::class,
+            'id_plan'
+        );
+    }
 }

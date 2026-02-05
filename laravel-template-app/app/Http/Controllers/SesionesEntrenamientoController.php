@@ -20,9 +20,18 @@ class SesionesEntrenamientoController extends Controller
 
     public function crearsesion(Request $request)
     {
-        $sesion = SesionesEntrenamiento::create($request->all());
+        $datos = $request->validate([
+            'id_plan' => 'required|integer|exists:plan_entrenamiento,id',
+            'fecha' => 'required|date',
+            'nombre' => 'nullable|string|max:100',
+            'descripcion' => 'nullable|string|max:255',
+            'completada' => 'boolean'
+        ]);
+
+        $sesion = SesionesEntrenamiento::create($datos);
 
         return response()->json([
+            'status' => 'ok',
             'accion' => 'sesion creada correctamente'
         ]);
     }
@@ -31,7 +40,7 @@ class SesionesEntrenamientoController extends Controller
     {
         $sesion = SesionesEntrenamiento::findOrFail($id);
         return response()->json([
-            'accion' => 'ver sesion',
+            'status' => 'ok',
             'sesion: ' => $sesion
         ]);
     }
