@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class BloquesEntrenamiento extends Model
+class BloquesEntrenamientoModel extends Model
 {
 
 

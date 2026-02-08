@@ -22,7 +22,7 @@ class SesionesEntrenamientoModel extends Model
     public function plan()
     {
         return $this->belongsTo(
-            PlanEntrenamiento::class,
+            PlanesEntrenamientoModel::class,
             'id_plan'
         );
     }

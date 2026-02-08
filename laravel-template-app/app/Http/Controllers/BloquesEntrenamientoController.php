@@ -9,7 +9,7 @@ class BloquesEntrenamientoController extends Controller
 {
     public function listarBloques()
     {
-        $bloques = BloquesEntrenamiento::all();
+        $bloques = BloquesEntrenamientoModel::all();
 
         return response()->json([
             'status' => 'ok',
@@ -30,7 +30,7 @@ class BloquesEntrenamientoController extends Controller
             'pulso_reserva_pct' => 'nullable|integer|min:0|max:100',
             'comentario' => 'nullable|string'
         ]);
-        $bloque = BloquesEntrenamiento::create($datos);
+        $bloque = BloquesEntrenamientoModel::create($datos);
 
         return response()->json([
             'status' => 'ok',
@@ -40,7 +40,7 @@ class BloquesEntrenamientoController extends Controller
 
     public function listarBloqueID($id)
     {
-        $bloque = BloquesEntrenamiento::findOrFail($id);
+        $bloque = BloquesEntrenamientoModel::findOrFail($id);
 
         return response()->json([
             'status' => 'ok',
@@ -50,7 +50,7 @@ class BloquesEntrenamientoController extends Controller
 
     public function eliminarBloque($id)
     {
-        $bloque = BloquesEntrenamiento::findOrFail($id);
+        $bloque = BloquesEntrenamientoModel::findOrFail($id);
         $bloque->delete();
 
         return response()->json([

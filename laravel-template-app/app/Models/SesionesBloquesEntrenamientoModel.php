@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class SesionesBloquesEntrenamientoModel extends Model
 {
     protected $table = 'sesion_bloque';
@@ -30,7 +31,7 @@ class SesionesBloquesEntrenamientoModel extends Model
     public function bloque()
     {
         return $this->belongsTo(
-            BloqueEntrenamiento::class,
+            BloquesEntrenamientoModel::class,
             'id_bloque_entrenamiento'
         );
     }

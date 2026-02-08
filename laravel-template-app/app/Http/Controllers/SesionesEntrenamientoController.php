@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SesionesEntrenamiento;
+use App\Models\SesionesEntrenamientoModel;
 
 
 class SesionesEntrenamientoController extends Controller
 {
     public function listarsesiones()
     {
-        $sesiones = SesionesEntrenamiento::all();
+        $sesiones = SesionesEntrenamientoModel::all();
 
         return response()->json([
             'status' => 'ok',
@@ -28,7 +28,7 @@ class SesionesEntrenamientoController extends Controller
             'completada' => 'boolean'
         ]);
 
-        $sesion = SesionesEntrenamiento::create($datos);
+        $sesion = SesionesEntrenamientoModel::create($datos);
 
         return response()->json([
             'status' => 'ok',
@@ -38,7 +38,7 @@ class SesionesEntrenamientoController extends Controller
 
     public function listarsesionID($id)
     {
-        $sesion = SesionesEntrenamiento::findOrFail($id);
+        $sesion = SesionesEntrenamientoModel::findOrFail($id);
         return response()->json([
             'status' => 'ok',
             'sesion: ' => $sesion
@@ -48,7 +48,7 @@ class SesionesEntrenamientoController extends Controller
     public function eliminarsesion($id)
     {
 
-        $sesion = SesionesEntrenamiento::findOrFail($id);
+        $sesion = SesionesEntrenamientoModel::findOrFail($id);
         $sesion->delete();
 
         return response()->json([
