@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlanesEntrenamientoModel;
 use Illuminate\Http\Request;
 
 class PlanesEntrenamientoController extends Controller
 {
     public function listarPlanes()
     {
-        $planes =  PlanEntrenamiento::all();
+        $planes =  PlanesEntrenamientoModel::all();
         return response()->json([
             'status' => 'ok',
             'planes' => $planes
@@ -27,7 +28,7 @@ class PlanesEntrenamientoController extends Controller
             'activo'       => 'boolean'
         ]);
 
-        $plan = PlanEntrenamiento::create($data);
+        $plan = PlanesEntrenamientoModel::create($data);
 
         return response()->json([
             'status' => 'ok',
@@ -37,7 +38,7 @@ class PlanesEntrenamientoController extends Controller
 
     public function modificarPlan($id, Request $request)
     {
-        $plan = PlanEntrenamiento::findOrFail($id);
+        $plan = PlanesEntrenamientoModel::findOrFail($id);
 
         $data = $request->validate([
             'nombre'       => 'sometimes|required|string|max:100',
@@ -58,7 +59,7 @@ class PlanesEntrenamientoController extends Controller
 
     public function eliminarPlan($id)
     {
-        $plan = PlanEntrenamiento::findOrFail($id);
+        $plan = PlanesEntrenamientoModel::findOrFail($id);
 
         $plan->delete();
 

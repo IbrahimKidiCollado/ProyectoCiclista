@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\BloquesEntrenamientoModel;
 
 use Illuminate\Http\Request;
 
@@ -8,7 +9,7 @@ class BloquesEntrenamientoController extends Controller
 {
     public function listarBloques()
     {
-        $bloques = BloqueEntrenamiento::all();
+        $bloques = BloquesEntrenamientoModel::all();
 
         return response()->json([
             'status' => 'ok',
@@ -29,7 +30,7 @@ class BloquesEntrenamientoController extends Controller
             'pulso_reserva_pct' => 'nullable|integer|min:0|max:100',
             'comentario' => 'nullable|string'
         ]);
-        $bloque = BloqueEntrenamiento::create($datos);
+        $bloque = BloquesEntrenamientoModel::create($datos);
 
         return response()->json([
             'status' => 'ok',
@@ -39,7 +40,7 @@ class BloquesEntrenamientoController extends Controller
 
     public function listarBloqueID($id)
     {
-        $bloque = BloqueEntrenamiento::findOrFail($id);
+        $bloque = BloquesEntrenamientoModel::findOrFail($id);
 
         return response()->json([
             'status' => 'ok',
@@ -49,7 +50,7 @@ class BloquesEntrenamientoController extends Controller
 
     public function eliminarBloque($id)
     {
-        $bloque = BloqueEntrenamiento::findOrFail($id);
+        $bloque = BloquesEntrenamientoModel::findOrFail($id);
         $bloque->delete();
 
         return response()->json([

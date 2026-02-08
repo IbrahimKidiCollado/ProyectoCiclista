@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\SesionesBloquesEntrenamientoModel;
 
 use Illuminate\Http\Request;
 
@@ -8,7 +9,7 @@ class SesionesBloquesEntrenamientoController extends Controller
 {
     public function listarSesionesBloques()
     {
-        $sesionesBloques = SesionesBloquesEntrenamiento::all();
+        $sesionesBloques = SesionesBloquesEntrenamientoModel::all();
 
         return response()->json([
             'status' => 'ok',
@@ -25,7 +26,7 @@ class SesionesBloquesEntrenamientoController extends Controller
             'repeticiones' => 'nullable|integer|min:1',
         ]);
 
-        $sesionBloque = SesionesBloquesEntrenamiento::create($datos);
+        $sesionBloque = SesionesBloquesEntrenamientoModel::create($datos);
         
         return response()->json([
             'status' => 'ok',
@@ -36,7 +37,7 @@ class SesionesBloquesEntrenamientoController extends Controller
 
     public function borrarSesionBloque($id)
     {
-        $sesionBloque = SesionesBloquesEntrenamiento::findOrFail($id);
+        $sesionBloque = SesionesBloquesEntrenamientoModel::findOrFail($id);
         $sesionBloque->delete();
 
         return response()->json([
