@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class BloquesEntrenamiento extends Model
 {
-    use HasFactory;
+
 
     protected $table = 'bloque_entrenamiento';
 
