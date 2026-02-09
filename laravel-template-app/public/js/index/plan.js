@@ -42,7 +42,7 @@ function obtenerTitulos() {
 function mostrarDatos() {
 	/* VARIABLES */
 	const titulos = obtenerTitulos();
-	const contenedor = document.getElementById("main-content");
+	const contenedor = document.getElementById("main");
 
 	/* DECLARACIONES DE ELEMENTOS DEL DOM */
 	const table = document.createElement("table");
@@ -57,7 +57,8 @@ function mostrarDatos() {
 		tr.append(th);
 	}
 	thead.append(tr);
-	table.append(thead);
+	
+	table.append(thead, tbody);
 
 	contenedor.append(table);
 }
