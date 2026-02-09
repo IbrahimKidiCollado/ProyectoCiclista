@@ -1,5 +1,5 @@
 /* VARIABLES GLOBALES */
-let enlace = document.getElementById("verPlan");
+let enlace = document.getElementById("verBloque");
 let datos = [];
 
 /* ESCUCHADORES */
@@ -15,7 +15,7 @@ function isEmpty(obj) {return !obj || obj.length === 0;}
 async function obtenerDatos() {
 	try {
 		//EXTRAEMOS LOS DATOS DE LA TABLA 
-		const response = await fetch("/plan", {
+		const response = await fetch("/bloque", {
 			//METODO QUE USAMOS
 			method: "GET",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA
@@ -24,7 +24,7 @@ async function obtenerDatos() {
 		
 		//COMPROBAMOS QUE LA EXTRACCION A SALIDO BIEN
 		if (!response.ok) {
-			throw new Error("Error al obtener planes...");
+			throw new Error("Error al obtener bloques...");
 		} else {
 			//AÑADIMOS LOS DATOS AL ARRAY GLOBAL CREADO PARA LOS DATOS
 			datos.push(await response.json());
