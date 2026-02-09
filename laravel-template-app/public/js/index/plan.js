@@ -54,10 +54,10 @@ function mostrarDatos() {
 	for(let nombre in titulos) {
 		const th = document.createElement("th");
 		th.textContent = titulos[nombre];
-		thead.append(th);
+		tr.append(th);
 	}
-
-	table.append("thead");
+	thead.append(tr);
+	table.append(thead);
 
 	contenedor.append(table);
 }
