@@ -123,3 +123,37 @@ body {
     margin-bottom: 1rem;
     color: #2c3e50;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Filas cebra (una gris, una blanca) */
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Efecto al pasar el mouse */
+tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
