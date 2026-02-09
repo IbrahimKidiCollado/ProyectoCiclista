@@ -124,36 +124,60 @@ body {
     color: #2c3e50;
 }
 
-table {
+/* Usamos el punto para la clase contenedora */
+.main-content {
+    background-color: #000814;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* Selección directa de etiquetas dentro de .main-content */
+.main-content table {
     width: 100%;
+    max-width: 900px;
     border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 18px;
-    font-family: sans-serif;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0faff;
+    background: #001d3d;
+    border-radius: 20px;
+    overflow: hidden; /* Para que el radius funcione */
+    border: 1px solid #003566;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-thead tr {
-    background-color: #009879;
-    color: #ffffff;
+/* Cabecera agresiva en azul eléctrico */
+.main-content thead {
+    background-color: #0052cc;
+}
+
+.main-content th {
+    padding: 20px;
     text-align: left;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #00a3ff;
 }
 
-th, td {
-    padding: 12px 15px;
+/* Filas y Celdas */
+.main-content td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #003566;
+    transition: all 0.3s ease;
 }
 
-tbody tr {
-    border-bottom: 1px solid #dddddd;
+/* Efecto de "Luz de Neón" al pasar el mouse */
+.main-content tbody tr:hover td {
+    background-color: #00a3ff; /* Azul brillante */
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px); /* Pequeño salto */
 }
 
-/* Filas cebra (una gris, una blanca) */
-tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-/* Efecto al pasar el mouse */
-tbody tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
+/* Quitar el borde a la última fila */
+.main-content tbody tr:last-child td {
+    border-bottom: none;
 }
