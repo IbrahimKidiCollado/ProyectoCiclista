@@ -126,7 +126,6 @@ body {
 
 /* Usamos el punto para la clase contenedora */
 .main-content {
-    background-color: #000814;
     padding: 2rem;
     min-height: 100vh;
     display: flex;
