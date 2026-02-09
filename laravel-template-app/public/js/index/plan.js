@@ -43,22 +43,29 @@ function mostrarDatos() {
 	/* VARIABLES */
 	const titulos = obtenerTitulos();
 	const contenedor = document.getElementById("main");
+	const arrayDatos = datos[0].planes;
 
 	/* DECLARACIONES DE ELEMENTOS DEL DOM */
 	const table = document.createElement("table");
 	const thead = document.createElement("thead");
 	const tbody = document.createElement("tbody");
-	const tr = document.createElement("tr");
+	const trHead = document.createElement("tr");
 
 	/* CREACION DE CABECERA */
 	for(let nombre in titulos) {
 		const th = document.createElement("th");
 		th.textContent = titulos[nombre];
-		tr.append(th);
+		trHead.append(th);
 	}
-	thead.append(tr);
-	
-	table.append(thead, tbody);
+	thead.append(trHead);
+	console.log(arrayDatos[0])
+	for (let i = 0; i < arrayDatos.length; i++) {
+		const tr = document.createElement("tr");
+		
+		for(let a = 0; a < titulos.length; a++) {
+			/* console.log(arrayDatos[i].titulos[a]); */
+		}
+	}
 
-	contenedor.append(table);
+	table.append(tbody);
 }
