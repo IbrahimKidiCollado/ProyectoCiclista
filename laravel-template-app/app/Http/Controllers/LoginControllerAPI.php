@@ -8,17 +8,25 @@ class LoginControllerAPI extends Controller
 {
     public function comprobarCredenciales(Request $request)
     {
-        $email= 'ciclista@gmail.com';
-        $pwd = 'ciclista';
+        
 
-        $emailAcomprobar = $request->input('email');
-        $pwdAcomprobar = $request->input('pwd');
+        /*
+        $request->validate([
+            'email' => 'required|email',
+            'pwd'   => 'required|string'
+        ]);
 
-         if ($emailAcomprobar === $email && $pwdAcomprobar === $pwd) {
-            return view('index');
-        } else {
-            return back()->with('error', 'Credenciales incorrectas');
+        $ciclista = CiclistaModel::where('email', $request->email)->first();
+
+        if (!$ciclista || !Hash::check($request->pwd, $ciclista->password)) {
+            return back()->withErrors(['login' => 'Credenciales incorrectas']);
         }
+
+        session([
+            'ciclista_id' => $ciclista->id,
+            'ciclista_nombre' => $ciclista->nombre
+        ]);
+        */
 
         return view('index');
     }

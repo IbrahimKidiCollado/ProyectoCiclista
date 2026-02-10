@@ -15,7 +15,7 @@ use App\Http\Controllers\SesionesBloquesEntrenamientoController;
 
 Route::get('/', function () {
     /*  */
-    return view('index');
+    return view('login');
 });
 // web.php
 Route::post('/login-test', function () {
