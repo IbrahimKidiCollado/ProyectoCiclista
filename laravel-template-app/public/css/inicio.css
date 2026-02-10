@@ -3,22 +3,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
     background-color: #f4f4f9;
+    min-height: 100vh;
 }
 
 /* --- Barra de Navegación --- */
 .navbar {
-    background-color: #2c3e50; /* Un tono azul oscuro más profesional */
+    background-color: #2c3e50;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
     height: 60px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
@@ -33,18 +37,16 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    height: 100%; /* Ocupa toda la altura para facilitar el hover */
+    height: 100%;
 }
 
-/* --- Elementos del Menú Principal --- */
 .nav-links li {
-    position: relative; /* Necesario para anclar el desplegable */
+    position: relative;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-/* Enlaces principales */
 .nav-links a {
     color: #ecf0f1;
     text-decoration: none;
@@ -56,41 +58,25 @@ body {
     font-size: 1rem;
 }
 
-/* Hover en los enlaces principales */
 .nav-links > li > a:hover {
     background-color: #34495e;
 }
 
-/* Mantener el botón principal iluminado cuando el menú está desplegado */
-.dropdown:hover .dropbtn {
-    background-color: #34495e;
-}
-
-/* Estilo para Logout */
-.nav-links .logout {
-    background-color: #c0392b;
-}
-.nav-links .logout:hover {
-    background-color: #e74c3c;
-}
-
-/* --- EL MENÚ DESPLEGABLE (Corrección) --- */
-
+/* --- Menú Desplegable --- */
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%; /* Justo debajo de la barra */
+    top: 100%;
     left: 0;
     background-color: #ffffff;
-    min-width: 200px; /* Un poco más ancho para leer bien */
+    min-width: 200px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     z-index: 100;
-    border-top: 3px solid #3498db; /* Un borde de color para decorar */
+    border-top: 3px solid #3498db;
 }
 
-/* Estilos de los enlaces DENTRO del desplegable */
 .dropdown-content a {
-    color: #333333; /* Texto oscuro SIEMPRE visible */
+    color: #333333;
     padding: 12px 20px;
     display: block;
     width: 100%;
@@ -100,69 +86,106 @@ body {
     font-size: 0.95rem;
 }
 
-/* Hover específico para los enlaces internos */
 .dropdown-content a:hover {
-    background-color: #f8f9fa; /* Fondo gris muy claro */
-    color: #3498db; /* Texto azul al pasar el ratón */
-    padding-left: 25px; /* Pequeña animación de desplazamiento */
+    background-color: #f8f9fa;
+    color: #3498db;
+    padding-left: 25px;
 }
 
-/* Mostrar el menú al pasar el ratón sobre el LI contenedor */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* --- ESTILO DE TABLA PROFESIONAL --- */
+.nav-links .logout {
+    background-color: #c0392b;
+}
 
-/* Contenedor y estructura base */
+.nav-links .logout:hover {
+    background-color: #e74c3c;
+}
+
+/* --- CONTENEDOR PRINCIPAL (CENTRADOR) --- */
+.main-content {
+    display: flex;          /* Activamos Flexbox */
+    flex-direction: column; /* Elementos en vertical */
+    align-items: center;    /* Centra horizontalmente la tabla */
+    padding: 40px 20px;     /* Espacio superior e inferior */
+    min-height: calc(100vh - 60px); 
+}
+
+/* --- ESTILO DE TABLA PROFESIONAL --- */
 .main-content table {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1100px;      /* Ancho máximo de la tabla */
     border-collapse: collapse;
-    background-color: #ffffff; /* Fondo blanco limpio */
-    border-radius: 10px;
-    overflow: hidden; /* Para recortar las esquinas */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    margin: 20px 0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;       /* Para que los bordes redondeados funcionen */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out; /* Animación de entrada */
 }
 
 /* Cabecera */
 .main-content thead {
-    background-color: #2c3e50; /* Mismo color que tu Navbar */
+    background-color: #2c3e50;
     color: #ffffff;
 }
 
 .main-content th {
-    padding: 15px 20px;
+    padding: 18px 20px;
     text-align: left;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #34495e;
 }
 
-/* Cuerpo y Celdas */
+/* Celdas del Cuerpo */
 .main-content td {
-    padding: 10px 15px;
-    width: 80px;
-    color: #333;
-    border-bottom: 1px solid #dddddd;
-    text-align: center !important;
+    padding: 15px 20px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
 }
 
-/* Filas alternas (Zebra) para mejor lectura */
+/* Filas alternas */
 .main-content tbody tr:nth-of-type(even) {
-    background-color: #f8f9fa;
+    background-color: #fcfcfd;
 }
 
-/* Efecto Hover elegante */
+/* Efecto Hover */
 .main-content tbody tr:hover {
-    background-color: #ecf0f1; /* Gris muy suave al pasar el mouse */
-    cursor: default;
+    background-color: #f1f4f7;
     transition: background-color 0.2s ease;
 }
 
-/* Última fila sin borde inferior */
+/* Última fila */
 .main-content tbody tr:last-of-type {
-    border-bottom: 3px solid #2c3e50; /* Un cierre visual con el color principal */
+    border-bottom: 3px solid #2c3e50;
+}
+
+/* Alineación específica: ID al centro, Descripciones a la izquierda */
+.main-content td:first-child {
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    width: 60px;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividad básica */
+@media (max-width: 768px) {
+    .main-content table {
+        display: block;
+        overflow-x: auto; /* Scroll lateral en móviles */
+    }
 }

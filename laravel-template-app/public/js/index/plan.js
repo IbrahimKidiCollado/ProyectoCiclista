@@ -1,6 +1,6 @@
 /* VARIABLES GLOBALES */
-let enlace = document.getElementById("verPlan");
-let datos = [];
+const enlace = document.getElementById("verPlan");
+const datos = [];
 
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
@@ -26,6 +26,8 @@ async function obtenerDatos() {
 		if (!response.ok) {
 			throw new Error("Error al obtener planes...");
 		} else {
+			//VACIAMOS VARIABLE GLOBAL
+			datos.length = 0; 
 			//AÑADIMOS LOS DATOS AL ARRAY GLOBAL CREADO PARA LOS DATOS
 			datos.push(await response.json());
 			// SI NO HUBIERA DATOS NO MOSTRAMOS NADA
@@ -54,6 +56,9 @@ function mostrarDatos() {
 	
 	//INVOCAMOS FUNCIONES QUE CREAR LAS PARTES DE LA TABLA E INSERTAMOS EN LA MISMA
 	table.append(creacionCabecera(), creacionCuerpo());
+	//VACIAMOS CONTENEDOR DE MUESTREO PARA QUE NO SE APILEN LAS TABLAS
+	contenedor.innerHTML = "";
+	//INSERTAMOS LA TABLA FINAL
 	contenedor.append(table);
 }
 
@@ -86,7 +91,6 @@ function creacionCuerpo() {
 
         // EXTRAEMOS LOS VALORES DE CADA UNO DE LOS OBJETOS
         const valores = Object.values(objeto);
-		console.log(valores);
 
 		//ITERAMOS SOBRE LOS VALORES EXTRAIDOS PARA INCORPORAR LAS FILAS Y COLUMNAS
         valores.forEach(valor => {

@@ -1,5 +1,5 @@
 /* VARIABLES GLOBALES */
-const enlace = document.getElementById("verBloque");
+const enlace = document.getElementById("verSesion");
 const datos = [];
 
 /* ESCUCHADORES */
@@ -16,7 +16,7 @@ async function obtenerDatos() {
 	try {
 		
 		//EXTRAEMOS LOS DATOS DE LA TABLA 
-		const response = await fetch("/bloque", {
+		const response = await fetch("/sesion", {
 			//METODO QUE USAMOS
 			method: "GET",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA
@@ -25,7 +25,7 @@ async function obtenerDatos() {
 		
 		//COMPROBAMOS QUE LA EXTRACCION A SALIDO BIEN
 		if (!response.ok) {
-			throw new Error("Error al obtener bloques...");
+			throw new Error("Error al obtener sesiones...");
 		} else {
 			//VACIAMOS LA VARIABLE GLOBAL
 			datos.length = 0;
@@ -42,7 +42,7 @@ async function obtenerDatos() {
 /* TRATAMIENTO DE DATOS */
 function obtenerTitulos() {
 	const titulos = [];
-	let nombres = datos[0].bloques;
+	let nombres = datos[0]["listado-de-sesiones"];
 
 	Object.keys(nombres[0]).forEach(d => titulos.push(d));
 
@@ -83,7 +83,7 @@ function creacionCabecera() {
 function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
-	const arrayDatos = datos[0].bloques;
+	const arrayDatos = datos[0]["listado-de-sesiones"];
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {

@@ -13,7 +13,7 @@ class BloquesEntrenamientoController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'bloques: ' => $bloques
+            'bloques' => $bloques
         ]);
     }
 
