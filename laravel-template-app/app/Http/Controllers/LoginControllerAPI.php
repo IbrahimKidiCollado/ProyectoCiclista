@@ -8,7 +8,19 @@ class LoginControllerAPI extends Controller
 {
     public function comprobarCredenciales(Request $request)
     {
-        
+        $user="ciclista@prueba.com";
+        $user2="test1@prueba.com";
+        $pwd = "ciclista";
+        $pwd2 = "prueba";
+
+        $emailUsuario = $request->email;
+        $pwdUsuario   = $request->pwd;
+
+        if($emailUsuario != $user || $pwdUsuario != $pwd){
+            return view('login');
+        };
+
+        return view('index');
 
         /*
         $request->validate([
@@ -27,8 +39,6 @@ class LoginControllerAPI extends Controller
             'ciclista_nombre' => $ciclista->nombre
         ]);
         */
-
-        return view('index');
     }
 
     public function cerrarSesion()
