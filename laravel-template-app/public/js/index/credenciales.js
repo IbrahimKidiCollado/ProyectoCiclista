@@ -23,7 +23,5 @@ async function obtenerCredenciales() {
 }
 
 function mostrarUsuario(datos){
-    console.log(datos[0].nombre);
     contenedor.textContent= 'Bienvenido ' + datos[0].nombre;
-
 }

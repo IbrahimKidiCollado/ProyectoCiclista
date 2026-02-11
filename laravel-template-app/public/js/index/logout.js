@@ -1,22 +1,26 @@
 document.getElementById('cerrarSesion').addEventListener('click', cerrarSesion);
 
-async function cerrarSesion(){
-    console.log("entramos")
+async function cerrarSesion() {
     try {
         const response = await fetch('/logout', {
-            method: 'POST'
-        })
+            method: 'POST',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        });
 
-        if(!response.ok){
-            throw new Error("Error al cerrar sesion...");
-        } else {
-            Notificador.mostrar("Cerrado sesion correctamente", "exito")
+        if (!response.ok) throw new Error();
+
+        if (window.Notificador) {
+            window.Notificador.mostrar("Cerrando sesión correctamente...", "exito");
         }
 
-        window.location.href = '/';
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 1500);
 
     } catch (error) {
-        console.log(error);
+        if (typeof Notificador !== 'undefined') {
+            Notificador.mostrar("No se pudo cerrar sesión", "error");
+        }
+        console.error("Error:", error);
     }
-
 }
