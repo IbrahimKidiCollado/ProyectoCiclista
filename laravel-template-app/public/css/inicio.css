@@ -176,6 +176,10 @@ body {
     width: 60px;
 }
 
+#contenedor-usuario{
+    padding: 10px;
+}
+
 /* Animación de entrada */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }

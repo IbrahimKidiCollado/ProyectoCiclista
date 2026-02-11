@@ -24,6 +24,7 @@ class VerifyCsrfToken extends Middleware
     '/login',
     '/logout',
     '/register',
+    '/usuario-sesion',
 
     // BLOQUES
     '/bloque/crear',

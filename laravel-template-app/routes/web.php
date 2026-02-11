@@ -28,6 +28,7 @@ Route::post('/login-test', function () {
 
 //RUTAS PARA LA AUTENTICACION
 Route::post('/login', [LoginControllerAPI::class, 'comprobarCredenciales'])->name('login.comprobar');
+Route::post('/usuario-sesion', [LoginControllerAPI::class, 'obtenerUsuarioSesion']);
 Route::post('/logout', [LoginControllerAPI::class, 'cerrarSesion'])->name('logout.salirse');
 Route::post('/register', [LoginControllerAPI::class, 'darseAlta'])->name('register.alta');
 

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CiclistaModel;
+use Illuminate\Support\Facades\Hash;
 
 class LoginControllerAPI extends Controller
 {
     public function comprobarCredenciales(Request $request)
     {
+        /*
         $user="ciclista@prueba.com";
         $user2="test1@prueba.com";
         $pwd = "ciclista";
@@ -20,9 +23,9 @@ class LoginControllerAPI extends Controller
             return view('login');
         };
 
-        return view('index');
+        return view('index');*/
 
-        /*
+        
         $request->validate([
             'email' => 'required|email',
             'pwd'   => 'required|string'
@@ -38,15 +41,30 @@ class LoginControllerAPI extends Controller
             'ciclista_id' => $ciclista->id,
             'ciclista_nombre' => $ciclista->nombre
         ]);
-        */
+
+        return view('index');
+
     }
+
+    public function obtenerUsuarioSesion()
+    {
+        if (session()->has('ciclista_id')) {
+            return response()->json([
+                'ciclista_id' => session('ciclista_id'),
+                'nombre' => session('ciclista_nombre')
+            ]);
+        }
+
+        return response()->json([
+            'ciclista_id' => null
+        ]);
+    }
+
 
     public function cerrarSesion()
     {
-        return response()->json([
-            'accion' => 'logout',
-            'status' => 'ok'
-        ]);
+        session()->flush(); // borra toda la sesión
+        return redirect('/login');
     }
 
     public function darseAlta(Request $request)
