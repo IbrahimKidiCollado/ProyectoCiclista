@@ -88,5 +88,128 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        /*
+        |--------------------------------------------------
+        | TIPO COMPONENTE
+        |--------------------------------------------------
+        */
+        DB::table('tipo_componente')->truncate();
+        DB::table('tipo_componente')->insert([
+            ['id'=>1,'nombre'=>'Cadena','descripcion'=>'Transmisión principal'],
+            ['id'=>2,'nombre'=>'Cassette','descripcion'=>'Piñonera trasera'],
+            ['id'=>3,'nombre'=>'Platos','descripcion'=>'Platos delanteros'],
+            ['id'=>4,'nombre'=>'Pastillas Freno','descripcion'=>'Sistema de frenado'],
+            ['id'=>5,'nombre'=>'Cubiertas','descripcion'=>'Neumáticos'],
+        ]);
+
+        /*
+        |--------------------------------------------------
+        | COMPONENTES BICICLETA
+        |--------------------------------------------------
+        */
+        DB::table('componentes_bicicleta')->truncate();
+        DB::table('componentes_bicicleta')->insert([
+            [
+                'id_bicicleta'=>1,
+                'id_tipo_componente'=>1,
+                'marca'=>'Shimano',
+                'modelo'=>'Ultegra',
+                'velocidad'=>'11v',
+                'fecha_montaje'=>'2026-01-01',
+                'km_actuales'=>1200,
+                'km_max_recomendado'=>3000,
+                'activo'=>1
+            ],
+            [
+                'id_bicicleta'=>1,
+                'id_tipo_componente'=>2,
+                'marca'=>'Shimano',
+                'modelo'=>'Ultegra 11-30',
+                'velocidad'=>'11v',
+                'fecha_montaje'=>'2026-01-01',
+                'km_actuales'=>1200,
+                'km_max_recomendado'=>5000,
+                'activo'=>1
+            ],
+            [
+                'id_bicicleta'=>2,
+                'id_tipo_componente'=>5,
+                'marca'=>'Continental',
+                'modelo'=>'GP5000',
+                'fecha_montaje'=>'2026-02-01',
+                'km_actuales'=>800,
+                'km_max_recomendado'=>4000,
+                'activo'=>1
+            ],
+            [
+                'id_bicicleta'=>3,
+                'id_tipo_componente'=>4,
+                'marca'=>'SRAM',
+                'modelo'=>'Level T',
+                'fecha_montaje'=>'2026-01-10',
+                'km_actuales'=>600,
+                'km_max_recomendado'=>2000,
+                'activo'=>1
+            ],
+        ]);
+
+        /*
+        |--------------------------------------------------
+        | SESIONES ENTRENAMIENTO
+        |--------------------------------------------------
+        */
+        DB::table('sesion_entrenamiento')->truncate();
+        DB::table('sesion_entrenamiento')->insert([
+            [
+                'id'=>1,
+                'id_plan'=>1,
+                'fecha'=>'2026-01-05',
+                'nombre'=>'Rodaje Base Z2',
+                'descripcion'=>'Trabajo continuo zona 2',
+                'completada'=>1
+            ],
+            [
+                'id'=>2,
+                'id_plan'=>1,
+                'fecha'=>'2026-01-07',
+                'nombre'=>'Sweet Spot',
+                'descripcion'=>'Intervalos 3x8min',
+                'completada'=>0
+            ],
+            [
+                'id'=>3,
+                'id_plan'=>2,
+                'fecha'=>'2026-01-20',
+                'nombre'=>'Trabajo Umbral',
+                'descripcion'=>'4x10min FTP',
+                'completada'=>1
+            ],
+        ]);
+
+        /*
+        |--------------------------------------------------
+        | SESION BLOQUE
+        |--------------------------------------------------
+        */
+        DB::table('sesion_bloque')->truncate();
+        DB::table('sesion_bloque')->insert([
+            // Sesión 1
+            ['id_sesion_entrenamiento'=>1,'id_bloque_entrenamiento'=>1,'orden'=>1,'repeticiones'=>1],
+            ['id_sesion_entrenamiento'=>1,'id_bloque_entrenamiento'=>2,'orden'=>2,'repeticiones'=>1],
+            ['id_sesion_entrenamiento'=>1,'id_bloque_entrenamiento'=>5,'orden'=>3,'repeticiones'=>1],
+
+            // Sesión 2
+            ['id_sesion_entrenamiento'=>2,'id_bloque_entrenamiento'=>1,'orden'=>1,'repeticiones'=>1],
+            ['id_sesion_entrenamiento'=>2,'id_bloque_entrenamiento'=>3,'orden'=>2,'repeticiones'=>3],
+            ['id_sesion_entrenamiento'=>2,'id_bloque_entrenamiento'=>4,'orden'=>3,'repeticiones'=>3],
+            ['id_sesion_entrenamiento'=>2,'id_bloque_entrenamiento'=>5,'orden'=>4,'repeticiones'=>1],
+
+            // Sesión 3
+            ['id_sesion_entrenamiento'=>3,'id_bloque_entrenamiento'=>1,'orden'=>1,'repeticiones'=>1],
+            ['id_sesion_entrenamiento'=>3,'id_bloque_entrenamiento'=>3,'orden'=>2,'repeticiones'=>4],
+            ['id_sesion_entrenamiento'=>3,'id_bloque_entrenamiento'=>5,'orden'=>3,'repeticiones'=>1],
+        ]);
+
     }
 }
