@@ -64,7 +64,9 @@ class LoginControllerAPI extends Controller
     public function cerrarSesion()
     {
         session()->flush(); // borra toda la sesión
-        return redirect('/login');
+         return response()->json([
+            'status' => 'ok'
+        ]);
     }
 
     public function darseAlta(Request $request)
