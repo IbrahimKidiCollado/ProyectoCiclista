@@ -1,39 +1,39 @@
-const Notificador = {
-    init() {
-        // Crea el contenedor si no existe
-        if (!document.getElementById('container-alertas')) {
-            const container = document.createElement('div');
-            container.id = 'container-alertas';
-            document.body.appendChild(container);
-        }
-    },
+function mostrar(mensaje, tipo = 'exito') {
+    this.init();
+    const container = document.getElementById('container-alertas');
+    
+    // DEFINIMOS ICONOS SEGUN TIPO DE ERROR
+    const iconos = {
+        'exito': '\u2714',
+        'error': '\u2716',
+        'info':  '\u2139'
+    };
 
-    mostrar(mensaje, tipo = 'exito') {
-        this.init();
-        const container = document.getElementById('container-alertas');
-        
-        const alerta = document.createElement('div');
-        alerta.classList.add('alerta-personalizada', `alerta-${tipo}`);
-        
-        alerta.innerHTML = `
-            <span>${mensaje}</span>
-            <strong style="margin-left: 10px; opacity: 0.7;">&times;</strong>
-        `;
+    // SI DA ERROR DURARÁ LA ALERTA 7 SEGUNDOS SINO 4
+    const duracion = (tipo === 'error') ? 7000 : 4000;
 
-        container.appendChild(alerta);
+    const alerta = document.createElement('div');
+    alerta.classList.add('alerta-personalizada', `alerta-${tipo}`);
+    
+    alerta.innerHTML = `
+        <span style="margin-right: 10px;">${iconos[tipo] || ''}</span>
+        <span>${mensaje}</span>
+        <strong style="margin-left: 15px; cursor: pointer; opacity: 0.7;">&times;</strong>
+    `;
 
-        // Auto-eliminar después de 4 segundos
-        const eliminar = () => {
+    container.appendChild(alerta);
+
+    const eliminar = () => {
+        if (alerta.parentElement) {
             alerta.classList.add('alerta-salida');
             alerta.addEventListener('animationend', () => alerta.remove());
-        };
+        }
+    };
 
-        const timer = setTimeout(eliminar, 4000);
+    const timer = setTimeout(eliminar, duracion);
 
-        // Eliminar al hacer clic
-        alerta.onclick = () => {
-            clearTimeout(timer);
-            eliminar();
-        };
-    }
-};
+    alerta.onclick = () => {
+        clearTimeout(timer);
+        eliminar();
+    };
+}

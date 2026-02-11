@@ -1,6 +1,4 @@
-const cerrar = document.getElementById('cerrarSesion');
-
-cerrar.addEventListener('click', cerrarSesion);
+document.getElementById('cerrarSesion').addEventListener('click', cerrarSesion);
 
 async function cerrarSesion(){
     console.log("entramos")
@@ -11,13 +9,14 @@ async function cerrarSesion(){
 
         if(!response.ok){
             throw new Error("Error al cerrar sesion...");
+        } else {
+            Notificador.mostrar("Cerrado sesion correctamente", "exito")
         }
 
         window.location.href = '/';
 
     } catch (error) {
         console.log(error);
-        
     }
 
 }
