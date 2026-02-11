@@ -41,7 +41,7 @@ class SesionesEntrenamientoController extends Controller
         $sesion = SesionesEntrenamientoModel::findOrFail($id);
         return response()->json([
             'status' => 'ok',
-            'sesion: ' => $sesion
+            'sesion' => $sesion
         ]);
     }
 
@@ -56,5 +56,3 @@ class SesionesEntrenamientoController extends Controller
         ]);
     }
 }
-
-
