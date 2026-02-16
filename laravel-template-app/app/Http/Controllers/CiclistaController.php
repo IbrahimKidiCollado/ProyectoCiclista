@@ -20,7 +20,8 @@ class CiclistaController extends Controller
     public function listarCiclistaID(Request $request, $id)
     {
         $ciclista = CiclistaModel::find($id);
-        $historial = $ciclista->historial;
+        $historial = $ciclista->historicos()->get();
+
 
         return response()->json([
             'status' => 'ok',
