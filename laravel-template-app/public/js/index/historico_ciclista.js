@@ -1,6 +1,6 @@
 /* VARIABLES GLOBALES */
-const enlace = document.getElementById("verPlan");
-const datos = [];
+const enlace = document.getElementById("verSesion");
+let datos = [];
 
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
@@ -14,8 +14,9 @@ function isEmpty(obj) {return !obj || obj.length === 0;}
 /* OBTENCION DE DATOS */
 async function obtenerDatos() {
 	try {
+		
 		//EXTRAEMOS LOS DATOS DE LA TABLA 
-		const response = await fetch("/plan", {
+		const response = await fetch("/sesion", {
 			//METODO QUE USAMOS
 			method: "GET",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA
@@ -24,12 +25,14 @@ async function obtenerDatos() {
 		
 		//COMPROBAMOS QUE LA EXTRACCION A SALIDO BIEN
 		if (!response.ok) {
-			throw new Error("Error al obtener planes...");
+			throw new Error("Error al obtener sesiones...");
 		} else {
-			//VACIAMOS VARIABLE GLOBAL
-			datos.length = 0; 
+			//VACIAMOS LA VARIABLE GLOBAL
+			datos.length = 0;
 			//AÑADIMOS LOS DATOS AL ARRAY GLOBAL CREADO PARA LOS DATOS
 			datos.push(await response.json());
+			datos = datos[0];
+			console.log(datos);
 			// SI NO HUBIERA DATOS NO MOSTRAMOS NADA
 			if (!isEmpty(datos)) mostrarDatos();
 		}
@@ -41,8 +44,7 @@ async function obtenerDatos() {
 /* TRATAMIENTO DE DATOS */
 function obtenerTitulos() {
 	const titulos = [];
-
-	let nombres = datos[0].planes;
+	let nombres = datos["sesion"];
 
 	Object.keys(nombres[0]).forEach(d => titulos.push(d));
 
@@ -83,7 +85,7 @@ function creacionCabecera() {
 function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
-	const arrayDatos = datos[0].planes;
+	const arrayDatos = datos["sesion"];
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {
