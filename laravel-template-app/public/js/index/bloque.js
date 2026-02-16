@@ -5,6 +5,7 @@ const datos = [];
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
 
+
 //FUNCIONES PARA TAREAS ESPECIFICAS
 
 function isEmpty(obj) {return !obj || obj.length === 0;}
@@ -75,6 +76,10 @@ function creacionCabecera() {
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
+	// Columna para acciones (p. ej. eliminar)
+	const thAcciones = document.createElement("th");
+	thAcciones.textContent = 'Acciones';
+	trHead.append(thAcciones);
 	thead.append(trHead);
 	return thead;
 }
@@ -99,8 +104,47 @@ function creacionCuerpo() {
             tr.append(td);
         });
 
+		let td = document.createElement("td");
+
+		let boton = document.createElement("button");
+		boton.textContent = "🗑️";
+		boton.classList.add("btn-eliminar-bloque");
+		boton.setAttribute("data-id", objeto.id);
+
+		// Pedir confirmación y enlazar correctamente la función
+		boton.addEventListener("click", () => {
+			if (confirm(`¿Eliminar bloque "${objeto.nombre}"?`)) {
+				eliminar(objeto.id);
+			}
+		});
+
+		td.append(boton);
+		tr.append(td);
         tbody.append(tr);
     });
 
 	return tbody;
+}
+
+async function eliminar(id) {
+	try {
+		const url = `/bloque/${id}/eliminar`;
+		const respuesta = await fetch(url, { method: "DELETE" });
+
+		if (!respuesta.ok) {
+			throw new Error("Error HTTP: " + respuesta.status);
+		}
+
+		const json = await respuesta.json();
+		if (json.status !== 'ok') {
+			throw new Error("Error en respuesta: " + (json.accion || 'respuesta inesperada'));
+		}
+
+		Notificador.mostrar('Bloque eliminado correctamente', 'exito');
+		// actualizar la lista en pantalla
+		obtenerDatos();
+	} catch (error) {
+		console.error(error);
+		Notificador.mostrar('No se pudo eliminar el bloque', 'error');
+	}
 }
