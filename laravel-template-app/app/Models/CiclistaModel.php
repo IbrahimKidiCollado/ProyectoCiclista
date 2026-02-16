@@ -3,6 +3,10 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory; // ± IMPORTANTE
 use Illuminate\Database\Eloquent\Model;
+use App\Models\HistoricoCiclista;
+use App\Models\PlanEntrenamiento;
+use App\Models\Entrenamiento;
+
 
 class CiclistaModel extends Model
 {
