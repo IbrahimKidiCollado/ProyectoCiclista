@@ -1,5 +1,5 @@
 /* VARIABLES GLOBALES */
-const enlace = document.getElementById("verSesion");
+const enlace = document.getElementById("historico_ciclista");
 let datos = [];
 
 /* ESCUCHADORES */
@@ -16,7 +16,7 @@ async function obtenerDatos() {
 	try {
 		
 		//EXTRAEMOS LOS DATOS DE LA TABLA 
-		const response = await fetch("/sesion", {
+		const response = await fetch(`/ciclista/historial/${obtenerIdSesion()}`, {
 			//METODO QUE USAMOS
 			method: "GET",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA
@@ -25,7 +25,7 @@ async function obtenerDatos() {
 		
 		//COMPROBAMOS QUE LA EXTRACCION A SALIDO BIEN
 		if (!response.ok) {
-			throw new Error("Error al obtener sesiones...");
+			throw new Error("Error al obtener el historico ciclista...");
 		} else {
 			//VACIAMOS LA VARIABLE GLOBAL
 			datos.length = 0;
@@ -44,12 +44,22 @@ async function obtenerDatos() {
 /* TRATAMIENTO DE DATOS */
 function obtenerTitulos() {
 	const titulos = [];
-	let nombres = datos["sesion"];
+	let nombres = datos["historial"];
 
 	Object.keys(nombres[0]).forEach(d => titulos.push(d));
 
 	return titulos;
 }
+
+function obtenerIdSesion() {
+    const id = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("usuario_id="))
+  ?.split("=")[1];
+
+    console.log(id);
+    return id;
+    }
 
 function mostrarDatos() {
 	/* VARIABLES */
@@ -85,7 +95,7 @@ function creacionCabecera() {
 function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
-	const arrayDatos = datos["sesion"];
+	const arrayDatos = datos["historial"];
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {

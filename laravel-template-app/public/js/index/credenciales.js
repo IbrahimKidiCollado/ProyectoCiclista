@@ -17,11 +17,11 @@ async function obtenerCredenciales() {
 
     } catch (error) {
         console.log(error);
-        
     }
     
 }
 
 function mostrarUsuario(datos){
+    document.cookie = `usuario_id=${datos[0].ciclista_id}`;
     contenedor.textContent= 'Bienvenido ' + datos[0].nombre;
 }
