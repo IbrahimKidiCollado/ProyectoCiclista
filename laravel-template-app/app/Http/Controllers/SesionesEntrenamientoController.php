@@ -14,7 +14,7 @@ class SesionesEntrenamientoController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'listado-de-sesiones'
+            'sesion' => $sesiones
         ]);
     }
 

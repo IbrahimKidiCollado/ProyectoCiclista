@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CiclistaModel;
 use Illuminate\Http\Request;
-use App\Models\HistoricoCiclista;
+use App\Models\HistoricoCiclistaModel;
 
 class CiclistaController extends Controller
 {
@@ -21,7 +21,7 @@ class CiclistaController extends Controller
     public function listarCiclistaID(Request $request, $id)
     {
         $ciclista = CiclistaModel::find($id);
-        $historial = $ciclista->historicos()->get();
+        $historial = $ciclista->historicos;
 
 
         return response()->json([

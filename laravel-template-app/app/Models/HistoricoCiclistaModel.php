@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HistoricoCiclista extends Model
+class HistoricoCiclistaModel extends Model
 {
     protected $table = 'historico_ciclista';
     public $timestamps = false;
@@ -27,6 +27,15 @@ class HistoricoCiclista extends Model
             'id_ciclista'
         );
     }
+    
+    public function historicos()
+    {
+        return $this->hasMany(
+            HistoricoCiclistaModel::class,
+            'id_ciclista'
+        );
+    }
+
 }
 
 ?>

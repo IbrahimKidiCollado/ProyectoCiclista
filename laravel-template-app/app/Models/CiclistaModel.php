@@ -3,9 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory; // ± IMPORTANTE
 use Illuminate\Database\Eloquent\Model;
-use App\Models\HistoricoCiclista;
-use App\Models\PlanEntrenamiento;
-use App\Models\Entrenamiento;
+use App\Models\HistoricoCiclistaModel;
+use App\Models\PlanesEntrenamientoModel;
 
 
 class CiclistaModel extends Model
@@ -36,7 +35,7 @@ class CiclistaModel extends Model
     public function historicos()
     {
         return $this->hasMany(
-            HistoricoCiclista::class,
+            HistoricoCiclistaModel::class,
             'id_ciclista'
         );
     }
