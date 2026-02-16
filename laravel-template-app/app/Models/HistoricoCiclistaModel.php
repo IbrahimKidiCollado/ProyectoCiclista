@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +29,7 @@ class HistoricoCiclistaModel extends Model
             'id_ciclista'
         );
     }
-    
+
     public function historicos()
     {
         return $this->hasMany(
