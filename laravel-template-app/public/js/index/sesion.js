@@ -1,6 +1,6 @@
 /* VARIABLES GLOBALES */
 const enlace = document.getElementById("verSesion");
-const datos = [];
+let datos = [];
 
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
@@ -31,6 +31,8 @@ async function obtenerDatos() {
 			datos.length = 0;
 			//AÑADIMOS LOS DATOS AL ARRAY GLOBAL CREADO PARA LOS DATOS
 			datos.push(await response.json());
+			datos = datos[0];
+			console.log(datos);
 			// SI NO HUBIERA DATOS NO MOSTRAMOS NADA
 			if (!isEmpty(datos)) mostrarDatos();
 		}
@@ -42,7 +44,7 @@ async function obtenerDatos() {
 /* TRATAMIENTO DE DATOS */
 function obtenerTitulos() {
 	const titulos = [];
-	let nombres = datos[0]["listado-de-sesiones"];
+	let nombres = datos["sesion"];
 
 	Object.keys(nombres[0]).forEach(d => titulos.push(d));
 
@@ -83,7 +85,7 @@ function creacionCabecera() {
 function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
-	const arrayDatos = datos[0]["listado-de-sesiones"];
+	const arrayDatos = datos["sesion"];
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {
