@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CiclistaModel;
 use Illuminate\Http\Request;
+use App\Models\HistoricoCiclista;
 
 class CiclistaController extends Controller
 {
