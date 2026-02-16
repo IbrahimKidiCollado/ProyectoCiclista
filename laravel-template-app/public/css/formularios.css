@@ -1,0 +1,108 @@
+/* --- ESTILO DE FORMULARIO ADAPTADO A TU NAVBAR --- */
+form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff; /* Blanco puro como tu tabla */
+    border-radius: 12px;       /* Mismo radio que la tabla */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Misma sombra que la tabla */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50; /* Color oscuro de la navbar */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs, Selects y Textareas */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="time"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 25px;
+    border: 2px solid #f0f0f0; /* Gris muy suave */
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #444;
+    background-color: #fcfcfd;
+    transition: all 0.3s ease;
+}
+
+/* Efecto Focus - Usando el azul de tu borde del menú (#3498db) */
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none;
+    border-color: #3498db; 
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+/* Botones - Usando el azul principal o el oscuro de la navbar */
+button[type="submit"],
+input[type="submit"] {
+    width: 100%;
+    background-color: #3498db; /* Azul corporativo */
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* Ajuste específico para el Botón de Logout (Rojo) */
+.logout-btn {
+    background-color: #c0392b !important;
+}
+
+/* --- ESTILOS PARA EL INPUT TIME (ADAPTADO) --- */
+input[type="time"] {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background-color: #3498db;
+    padding: 5px;
+    border-radius: 50%;
+    filter: invert(1); /* Hace que el icono sea blanco sobre el fondo azul */
+}
+
+input[type="time"]::-webkit-datetime-edit-text {
+    color: #3498db;
+    font-weight: bold;
+}
+
+input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+input[type="time"]::-webkit-datetime-edit-second-field:focus {
+    background-color: #3498db;
+    color: white;
+}

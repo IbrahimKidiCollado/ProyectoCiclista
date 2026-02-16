@@ -7,6 +7,7 @@
     <title>Plataforma de Entrenamientos</title>
 
     <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/formularios.css">
     <script src="/js/genericos/alertas.js" defer></script>
     <script src="/js/index/plan.js" type="module" defer></script>
     <script src="/js/index/bloque.js" type="module" defer></script>
@@ -14,7 +15,7 @@
     <script src="/js/index/credenciales.js" type="module" defer></script>
     <script src="/js/index/logout.js" type="module" defer></script>
     <script src="/js/index/historico_ciclista.js" type="module" defer></script>
-    
+    <script src="/js/index/crearDatos.js" defer></script>
 </head>
 
 <body>
@@ -49,7 +50,28 @@
     <div id="contenedor-usuario">
         <h2 id="usuario"></h2>
     </div>
-    <div class="main-content" id="main"></div>
+    <div class="main-content" id="main">
+        <form>
+            <label for="nombre">Añade nombre del bloque de entrenamiento</label>
+            <input type="text" name="nombre" placeholder="Sentadillas...">
+            <label for="descripcion">Añade una sesion para el bloque: </label>
+            <input type="text" name="descripcion" placeholder="Profundas...">
+            <label for="tipo">Añade el tipo de bloque: </label>
+            <input type="text" name="tipo" placeholder="Bulgaras...">
+            <label for="duracion">Añade la duracion estimada: </label>
+            <input type="time" name="duracion" step="1" value="00:30:00">
+            <label for="potencia_min">Añade la potencia min: </label>
+            <input type="number" name="potencia_min" placeholder="50">
+            <label for="potencia_max">Añade la potencia max: </label>
+            <input type="number" name="potencia_max" placeholder="80">
+            <label for="pulso_max">Añade el pulso maximo que se debera tener: </label>
+            <input type="number" name="pulso_max" placeholder="75">
+            <label for="pulso_min">Añade el pulso minimo que se debera tener: </label>
+            <input type="number" name="pulso_min" placeholder="60">
+            <label for="comentario">Añade un comentario si lo ves necesario</label>
+            <textarea name="comentario" id="comentario" placeholder="Deben de quemar..."></textarea>
+        </form>
+    </div>
 
 </body>
 
