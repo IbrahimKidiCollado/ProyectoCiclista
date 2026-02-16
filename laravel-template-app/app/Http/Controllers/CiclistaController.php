@@ -12,7 +12,6 @@ class CiclistaController extends Controller
         $ciclistas = CiclistaModel::all();
 
         return response()->json([
-            'accion' => 'acceder a los ciclistas',
             'status' => 'ok',
             'ciclistas' =>$ciclistas
         ]);
@@ -21,11 +20,11 @@ class CiclistaController extends Controller
     public function listarCiclistaID(Request $request, $id)
     {
         $ciclista = CiclistaModel::find($id);
+        $historial = $ciclista->historial;
 
         return response()->json([
-            'accion' => 'acceder a los ciclistas',
             'status' => 'ok',
-            'ciclista' =>$ciclista
+            'historial' =>$historial
         ]);
     }
 }

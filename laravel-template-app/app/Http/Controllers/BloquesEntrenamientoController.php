@@ -51,7 +51,7 @@ class BloquesEntrenamientoController extends Controller
     public function eliminarBloque($id)
     {
         $bloque = BloquesEntrenamientoModel::findOrFail($id);
-        $bloque->delete();
+        //$bloque->delete();
 
         return response()->json([
             'status' => 'ok',

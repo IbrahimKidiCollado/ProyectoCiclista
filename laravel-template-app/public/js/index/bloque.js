@@ -76,10 +76,6 @@ function creacionCabecera() {
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
-	// Columna para acciones (p. ej. eliminar)
-	const thAcciones = document.createElement("th");
-	thAcciones.textContent = 'Acciones';
-	trHead.append(thAcciones);
 	thead.append(trHead);
 	return thead;
 }
@@ -89,6 +85,7 @@ function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
 	const arrayDatos = datos[0].bloques;
+	let id;
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {
@@ -100,6 +97,7 @@ function creacionCuerpo() {
 		//ITERAMOS SOBRE LOS VALORES EXTRAIDOS PARA INCORPORAR LAS FILAS Y COLUMNAS
         valores.forEach(valor => {
             const td = document.createElement("td");
+			if(valor == "id") id = valor;
             td.textContent = valor;
             tr.append(td);
         });
@@ -107,16 +105,9 @@ function creacionCuerpo() {
 		let td = document.createElement("td");
 
 		let boton = document.createElement("button");
-		boton.textContent = "🗑️";
-		boton.classList.add("btn-eliminar-bloque");
-		boton.setAttribute("data-id", objeto.id);
-
-		// Pedir confirmación y enlazar correctamente la función
-		boton.addEventListener("click", () => {
-			if (confirm(`¿Eliminar bloque "${objeto.nombre}"?`)) {
-				eliminar(objeto.id);
-			}
-		});
+		boton.textContent="🗑️"
+		boton.setAttribute("id", "eliminar");
+		boton.addEventListener("click", eliminar(id));
 
 		td.append(boton);
 		tr.append(td);
@@ -125,26 +116,18 @@ function creacionCuerpo() {
 
 	return tbody;
 }
-
-async function eliminar(id) {
+async function eliminar() {
 	try {
-		const url = `/bloque/${id}/eliminar`;
-		const respuesta = await fetch(url, { method: "DELETE" });
+		let url = "/bloque/"+id+"/eliminar";
+		const respuesta = await fetch(url)
 
-		if (!respuesta.ok) {
-			throw new Error("Error HTTP: " + respuesta.status);
+		if(!respuesta.ok){
+			throw new Error("Error HTTP: " + response.status);
 		}
 
-		const json = await respuesta.json();
-		if (json.status !== 'ok') {
-			throw new Error("Error en respuesta: " + (json.accion || 'respuesta inesperada'));
-		}
-
-		Notificador.mostrar('Bloque eliminado correctamente', 'exito');
-		// actualizar la lista en pantalla
-		obtenerDatos();
-	} catch (error) {
-		console.error(error);
-		Notificador.mostrar('No se pudo eliminar el bloque', 'error');
+		console.log(respuesta);
+	}catch (error) {
+		console.log(error);
 	}
+	
 }
