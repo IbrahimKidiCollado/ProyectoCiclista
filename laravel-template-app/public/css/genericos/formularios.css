@@ -106,3 +106,9 @@ input[type="time"]::-webkit-datetime-edit-second-field:focus {
     background-color: #3498db;
     color: white;
 }
+
+textarea {
+    resize: none; /* Esto elimina el tirador para moverlo */
+    overflow: auto; /* Evita que aparezcan barras de scroll si no hay texto */
+    min-height: 80px; /* Es mejor definir una altura fija si no se puede mover */
+}
