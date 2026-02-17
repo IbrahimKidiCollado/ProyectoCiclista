@@ -1,6 +1,7 @@
 /* VARIABLES GLOBALES */
 const enlace = document.getElementById("verPlan");
 const datos = [];
+let id;
 
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
@@ -75,6 +76,10 @@ function creacionCabecera() {
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
+	const thAcciones = document.createElement("th");
+    thAcciones.textContent = "Acciones";
+    trHead.append(thAcciones);
+
 	thead.append(trHead);
 	return thead;
 }
@@ -99,8 +104,39 @@ function creacionCuerpo() {
             tr.append(td);
         });
 
+        let td = document.createElement("td");
+
+		let boton = document.createElement("button");
+		boton.textContent="🗑️"
+		boton.setAttribute("id", "eliminar");
+		boton.addEventListener("click",eliminar);
+
+		td.append(boton);
+		tr.append(td);
         tbody.append(tr);
     });
 
 	return tbody;
+}
+async function eliminar(e) {
+	//obtener el id del seleccionado
+	id = e.target.parentElement.parentElement.firstChild.textContent;
+
+	console.log(id)
+	try {
+		let url = "/plan/"+id;
+		const respuesta = await fetch(url, {
+			method:"DELETE",
+		})
+		console.log(respuesta);
+		if(!respuesta.ok){
+			throw new Error("Error HTTP: " +respuesta.status);
+		}
+
+		console.log(respuesta);
+	}catch (error) {
+		console.log(error);
+	}
+
+	mostrarDatos();
 }

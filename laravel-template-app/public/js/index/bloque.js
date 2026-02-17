@@ -77,6 +77,10 @@ function creacionCabecera() {
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
+	const thAcciones = document.createElement("th");
+    thAcciones.textContent = "Acciones";
+    trHead.append(thAcciones);
+
 	thead.append(trHead);
 	return thead;
 }
@@ -136,4 +140,5 @@ async function eliminar(e) {
 		console.log(error);
 	}
 
+	obtenerDatos();
 }
