@@ -74,7 +74,6 @@ function creacionCabecera() {
 	// ITERAMOS SOBRE EL ARRAY DE TITULOS
 	for(let nombre in titulos) {
 		const th = document.createElement("th");
-		if(titulos[nombre] == "id")id =titulos[nombre];
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
@@ -117,7 +116,11 @@ function creacionCuerpo() {
 	return tbody;
 }
 
-async function eliminar() {
+async function eliminar(e) {
+	//obtener el id del seleccionado
+	id = e.target.parentElement.parentElement.firstChild.textContent;
+
+	console.log(id)
 	try {
 		let url = "/bloque/"+id+"/eliminar";
 		const respuesta = await fetch(url, {
@@ -132,5 +135,5 @@ async function eliminar() {
 	}catch (error) {
 		console.log(error);
 	}
-	
+
 }
