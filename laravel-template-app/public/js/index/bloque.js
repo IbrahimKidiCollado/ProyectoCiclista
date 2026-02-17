@@ -1,6 +1,7 @@
 /* VARIABLES GLOBALES */
 const enlace = document.getElementById("verBloque");
 const datos = [];
+let id;
 
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
@@ -73,6 +74,7 @@ function creacionCabecera() {
 	// ITERAMOS SOBRE EL ARRAY DE TITULOS
 	for(let nombre in titulos) {
 		const th = document.createElement("th");
+		if(titulos[nombre] == "id")id =titulos[nombre];
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
@@ -85,7 +87,6 @@ function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
 	const arrayDatos = datos[0].bloques;
-	let id;
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {
@@ -97,7 +98,6 @@ function creacionCuerpo() {
 		//ITERAMOS SOBRE LOS VALORES EXTRAIDOS PARA INCORPORAR LAS FILAS Y COLUMNAS
         valores.forEach(valor => {
             const td = document.createElement("td");
-			if(valor == "id") id = valor;
             td.textContent = valor;
             tr.append(td);
         });
@@ -107,7 +107,7 @@ function creacionCuerpo() {
 		let boton = document.createElement("button");
 		boton.textContent="🗑️"
 		boton.setAttribute("id", "eliminar");
-		boton.addEventListener("click", eliminar(id));
+		boton.addEventListener("click",eliminar);
 
 		td.append(boton);
 		tr.append(td);
@@ -116,13 +116,16 @@ function creacionCuerpo() {
 
 	return tbody;
 }
+
 async function eliminar() {
 	try {
 		let url = "/bloque/"+id+"/eliminar";
-		const respuesta = await fetch(url)
-
+		const respuesta = await fetch(url, {
+			method:"DELETE",
+		})
+		console.log(respuesta);
 		if(!respuesta.ok){
-			throw new Error("Error HTTP: " + response.status);
+			throw new Error("Error HTTP: " +respuesta.status);
 		}
 
 		console.log(respuesta);
