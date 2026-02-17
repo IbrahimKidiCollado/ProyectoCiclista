@@ -55,13 +55,44 @@ function mostrarDatos() {
 	/* VARIABLES */
 	const contenedor = document.getElementById("main");
 	const table = document.createElement("table");
+
+	
 	
 	//INVOCAMOS FUNCIONES QUE CREAR LAS PARTES DE LA TABLA E INSERTAMOS EN LA MISMA
-	table.append(creacionCabecera(), creacionCuerpo());
+	table.append(creacionBoton(),creacionCabecera(), creacionCuerpo());
 	//VACIAMOS CONTENEDOR DE MUESTREO PARA QUE NO SE APILEN LAS TABLAS
 	contenedor.innerHTML = "";
 	//INSERTAMOS LA TABLA FINAL
 	contenedor.append(table);
+}
+
+function creacionBoton(){
+	const boton = document.createElement("button");
+	boton.textContent = "Añadir bloque";
+	boton.setAttribute("id", "añadir");
+	boton.addEventListener("click", function() {
+		//Hacemos peticion por get para que muestre el formulario de creacion de bloque
+		//Hacemos una peticion a /bloque/crear para que redirija a la view crearBloque
+		fetch("/bloque/crear", {
+			method: "GET",
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error("Error al cargar el formulario de creación de bloque...");
+			}
+			return response.text();
+		})
+		.then(html => {
+			const contenedor = document.getElementById("main");
+			contenedor.innerHTML = html;
+		})
+		.catch(error => {
+			console.log(error);
+		});
+
+	});
+
+	return boton;
 }
 
 // CREACION DE LA CABECERA CON LOS TITULOS DINAMICOS DE LAS TABLAS

@@ -40,6 +40,9 @@ Route::get('/ciclista/historial/{id}', [CiclistaController::class, 'listarCiclis
 //RUTAS PARA LOS BLOQUES DE ENTRENAMIENTO
 Route::get('/bloque', [BloquesEntrenamientoController::class, 'listarBloques'])->name('bloques.listar');
 Route::post('/bloque/crear', [BloquesEntrenamientoController::class, 'crearBloque'])->name('bloque.crear');
+Route::get('/bloque/crear', function () {
+    return view('crearBloque');
+});
 Route::get('/bloque/{id}', [BloquesEntrenamientoController::class, 'listarBloqueID'])->name('bloque.listar');
 Route::delete('/bloque/{id}/eliminar', [BloquesEntrenamientoController::class, 'eliminarBloque'])->name('bloque.eliminar');
 
