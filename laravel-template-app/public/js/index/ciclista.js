@@ -1,5 +1,5 @@
 /* VARIABLES GLOBALES */
-const enlace = document.getElementById("verBloque");
+const enlace= document.getElementById("verCiclistas");
 const datos = [];
 let id;
 
@@ -18,7 +18,7 @@ async function obtenerDatos() {
 	try {
 		
 		//EXTRAEMOS LOS DATOS DE LA TABLA 
-		const response = await fetch("/bloque", {
+		const response = await fetch("/ciclistas", {
 			//METODO QUE USAMOS
 			method: "GET",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA
@@ -27,7 +27,7 @@ async function obtenerDatos() {
 		
 		//COMPROBAMOS QUE LA EXTRACCION A SALIDO BIEN
 		if (!response.ok) {
-			throw new Error("Error al obtener bloques...");
+			throw new Error("Error al obtener ciclistas...");
 		} else {
 			//VACIAMOS LA VARIABLE GLOBAL
 			datos.length = 0;
@@ -44,7 +44,7 @@ async function obtenerDatos() {
 /* TRATAMIENTO DE DATOS */
 function obtenerTitulos() {
 	const titulos = [];
-	let nombres = datos[0].bloques;
+	let nombres = datos[0].ciclistas;
 
 	Object.keys(nombres[0]).forEach(d => titulos.push(d));
 
@@ -56,43 +56,12 @@ function mostrarDatos() {
 	const contenedor = document.getElementById("main");
 	const table = document.createElement("table");
 
-	
-	
 	//INVOCAMOS FUNCIONES QUE CREAR LAS PARTES DE LA TABLA E INSERTAMOS EN LA MISMA
-	table.append(creacionBoton(),creacionCabecera(), creacionCuerpo());
+	table.append(creacionCabecera(), creacionCuerpo());
 	//VACIAMOS CONTENEDOR DE MUESTREO PARA QUE NO SE APILEN LAS TABLAS
 	contenedor.innerHTML = "";
 	//INSERTAMOS LA TABLA FINAL
 	contenedor.append(table);
-}
-
-function creacionBoton(){
-	const boton = document.createElement("button");
-	boton.textContent = "Añadir bloque";
-	boton.setAttribute("id", "add");
-	boton.addEventListener("click", function() {
-		//Hacemos peticion por get para que muestre el formulario de creacion de bloque
-		//Hacemos una peticion a /bloque/crear para que redirija a la view crearBloque
-		fetch("/bloque/crear", {
-			method: "GET",
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error("Error al cargar el formulario de creación de bloque...");
-			}
-			return response.text();
-		})
-		.then(html => {
-			const contenedor = document.getElementById("main");
-			contenedor.innerHTML = html;
-		})
-		.catch(error => {
-			console.log(error);
-		});
-
-	});
-
-	return boton;
 }
 
 // CREACION DE LA CABECERA CON LOS TITULOS DINAMICOS DE LAS TABLAS
@@ -108,9 +77,6 @@ function creacionCabecera() {
 		th.textContent = titulos[nombre];
 		trHead.append(th);
 	}
-	const thAcciones = document.createElement("th");
-    thAcciones.textContent = "Acciones";
-    trHead.append(thAcciones);
 
 	thead.append(trHead);
 	return thead;
@@ -120,7 +86,7 @@ function creacionCabecera() {
 function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
-	const arrayDatos = datos[0].bloques;
+	const arrayDatos = datos[0].ciclistas;
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {
@@ -135,41 +101,8 @@ function creacionCuerpo() {
             td.textContent = valor;
             tr.append(td);
         });
-
-		let td = document.createElement("td");
-
-		let boton = document.createElement("button");
-		boton.textContent="🗑️"
-		boton.setAttribute("id", "eliminar");
-		boton.addEventListener("click",eliminar);
-
-		td.append(boton);
-		tr.append(td);
         tbody.append(tr);
     });
 
 	return tbody;
-}
-
-async function eliminar(e) {
-	//obtener el id del seleccionado
-	id = e.target.parentElement.parentElement.firstChild.textContent;
-
-	console.log(id)
-	try {
-		let url = "/bloque/"+id+"/eliminar";
-		const respuesta = await fetch(url, {
-			method:"DELETE",
-		})
-		console.log(respuesta);
-		if(!respuesta.ok){
-			throw new Error("Error HTTP: " +respuesta.status);
-		}
-
-		console.log(respuesta);
-	}catch (error) {
-		console.log(error);
-	}
-
-	obtenerDatos();
 }

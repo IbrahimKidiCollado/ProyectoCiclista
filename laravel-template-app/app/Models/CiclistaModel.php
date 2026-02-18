@@ -21,6 +21,11 @@ class CiclistaModel extends Model
         'email',
         'password'
     ];
+    //Para que no mande las contraseñas ni el id al hacer GET
+    protected $hidden = [
+        'id',
+        'password'
+    ];
 
     // Un ciclista tiene muchos entrenamientos
     public function entrenamientos()

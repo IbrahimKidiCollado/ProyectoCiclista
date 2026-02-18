@@ -15,7 +15,8 @@
     <script src="/js/index/credenciales.js" type="module" defer></script>
     <script src="/js/index/logout.js" type="module" defer></script>
     <script src="/js/index/historico_ciclista.js" type="module" defer></script>
-    <script src="/js/index/crearDatos.js" defer></script>
+    <script src="/js/index/crearDatos.js" type="module" defer></script>
+    <script src="/js/index/ciclista.js" type="module" defer></script>
 </head> 
 
 <body>
@@ -24,6 +25,13 @@
 
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Ciclistas ▾</a>
+                <div class="dropdown-content">
+                    <a id="verCiclistas">Ver Ciclistas</a>
+                </div>
+            </li>
 
             <li class="dropdown">
                 <a href="#" class="dropbtn">Entrenamientos ▾</a>

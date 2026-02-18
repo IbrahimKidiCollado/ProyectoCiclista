@@ -25,6 +25,11 @@ Route::post('/login-test', function () {
     ]);
 });
 
+Route::get('/', function () {
+    /*  */
+    return view('index');
+});
+
 
 //RUTAS PARA LA AUTENTICACION
 Route::post('/login', [LoginControllerAPI::class, 'comprobarCredenciales'])->name('login.comprobar');

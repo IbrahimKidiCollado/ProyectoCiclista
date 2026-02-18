@@ -1,23 +1,40 @@
 
-    <div class="main-content" id="main">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Bloque</title>
+        <link rel="stylesheet" href="/css/inicio.css">
+        <link rel="stylesheet" href="/css/genericos/formularios.css">
+        <script src="/js/index/crear/crearBloque.js" type="module" defer></script>
+
+    </head>
+    <body>
+        <div class="main-content" id="main">
         <form>
             <label for="nombre">Añade nombre del bloque de entrenamiento</label>
-            <input type="text" name="nombre" placeholder="Sentadillas...">
-            <label for="descripcion">Añade una sesion para el bloque: </label>
-            <input type="text" name="descripcion" placeholder="Profundas...">
+            <input type="text" name="nombre" placeholder="Sentadillas..." id="nombre">
+            <label for="descripcion">Añade una decripcion para el bloque: </label>
+            <input type="text" name="descripcion" placeholder="Profundas..." id="descripcion">
             <label for="tipo">Añade el tipo de bloque: </label>
-            <input type="text" name="tipo" placeholder="Bulgaras...">
+            <input type="text" name="tipo" placeholder="Bulgaras..." id="tipo">
             <label for="duracion">Añade la duracion estimada: </label>
-            <input type="time" name="duracion" step="1" value="00:30:00">
+            <input type="time" name="duracion" step="1" value="00:30:00" id="duracion">
             <label for="potencia_min">Añade la potencia min: </label>
-            <input type="number" name="potencia_min" placeholder="50">
+            <input type="number" name="potencia_min" placeholder="50" id="potencia_min">
             <label for="potencia_max">Añade la potencia max: </label>
-            <input type="number" name="potencia_max" placeholder="80">
+            <input type="number" name="potencia_max" placeholder="80" id="potencia_max">
             <label for="pulso_max">Añade el pulso maximo que se debera tener: </label>
-            <input type="number" name="pulso_max" placeholder="75">
+            <input type="number" name="pulso_max" placeholder="75" id="pulso_max">
             <label for="pulso_min">Añade el pulso minimo que se debera tener: </label>
-            <input type="number" name="pulso_min" placeholder="60">
+            <input type="number" name="pulso_min" placeholder="60" id="pulso_min">
             <label for="comentario">Añade un comentario si lo ves necesario</label>
-            <textarea name="comentario" rows="5" cols="4" id="comentario" placeholder="Deben de quemar..."></textarea>
+            <textarea name="comentario" rows="5" cols="4" id="comentario" placeholder="Deben de quemar..." id="comentario"></textarea>
+
+            <button type="button" class="btn-enviar" id="crearBloque">Enviar</button>
         </form>
     </div>
+        
+    </body>
+    </html>
