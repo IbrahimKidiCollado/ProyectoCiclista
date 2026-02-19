@@ -31,18 +31,13 @@ class SesionesBloquesEntrenamientoController extends Controller
 
     public function crearSesionBloque(Request $request)
     {
-        $datos = $request->validate([
-            'id_sesion_entrenamiento' => 'required|integer|exists:sesion_entrenamiento,id',
-            'id_bloque_entrenamiento' => 'required|integer|exists:bloque_entrenamiento,id',
-            'orden' => 'required|integer|min:1',
-            'repeticiones' => 'nullable|integer|min:1',
-        ]);
+        $datos = $request->all();
 
         $sesionBloque = SesionesBloquesEntrenamientoModel::create($datos);
         
         return response()->json([
             'status' => 'ok',
-            'accion' => 'sesion-bloque creado'
+            'accion' => $sesionBloque
 
         ]);
     }

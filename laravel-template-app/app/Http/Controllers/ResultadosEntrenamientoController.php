@@ -36,26 +36,24 @@ class ResultadosEntrenamientoController extends Controller
     }
     public function crearResultado(Request $request)
     {
-        //validamos y creamos el resultado
-        $resultado = $request->validate([
-            'id_sesion' => 'required|integer|exists:sesion_entrenamiento,id',
-            'id_ciclista' => 'required|integer|exists:ciclistas,id',
-            'distancia' => 'required|numeric|min:0',
-            'duracion' => 'required|numeric|min:0',
-            'velocidad_media' => 'required|numeric|min:0',
-            'calorias_quemadas' => 'required|numeric|min:0'
-        ]);
+        $resultado = $request->all();
 
         $resultado = ResultadosModel::create($resultado);
 
-        return response()->json($resultado, 201);
+        return response()->json([
+            'status' => 'ok',
+            'accion' => $resultado
+        ]);
     }
 
     public function listarResultadoID($id)
     {
         $resultado = ResultadosModel::findorFail($id);
 
-        return response()->json($resultado);
+        return response()->json([
+            'status' => 'ok',
+            'resultado' => $resultado
+        ]);
     }
 }
 

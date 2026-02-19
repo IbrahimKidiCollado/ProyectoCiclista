@@ -18,21 +18,12 @@ class PlanesEntrenamientoController extends Controller
 
     public function crearPlan(Request $request)
     {
-        $data = $request->validate([
-            'id_ciclista'  => 'required|exists:ciclista,id',
-            'nombre'       => 'required|string|max:100',
-            'descripcion'  => 'nullable|string',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin'    => 'required|date|after_or_equal:fecha_inicio',
-            'objetivo'     => 'nullable|string|max:150',
-            'activo'       => 'boolean'
-        ]);
-
+        $data = $request->all();   
         $plan = PlanesEntrenamientoModel::create($data);
 
         return response()->json([
             'status' => 'ok',
-            'accion' => 'plan creado'
+            'accion' => $plan
         ]);
     }
 
@@ -40,20 +31,13 @@ class PlanesEntrenamientoController extends Controller
     {
         $plan = PlanesEntrenamientoModel::findOrFail($id);
 
-        $data = $request->validate([
-            'nombre'       => 'sometimes|required|string|max:100',
-            'descripcion'  => 'nullable|string',
-            'fecha_inicio' => 'sometimes|required|date',
-            'fecha_fin'    => 'sometimes|required|date|after_or_equal:fecha_inicio',
-            'objetivo'     => 'nullable|string|max:150',
-            'activo'       => 'boolean'
-        ]);
+        $data = $request->all();
 
         $plan->update($data);
 
         return response()->json([
             'status' => 'ok',
-            'accion' => 'plan modificado',
+            'accion' => $plan
         ]);
     }
 

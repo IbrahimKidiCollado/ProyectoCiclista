@@ -1,27 +1,31 @@
 <?php 
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
-use App\Models\CiclistaModel;
-use App\Models\SesionesEntrenamientoModel;
 
 class ResultadosModel extends Model
 {
     protected $table = 'resultados';
 
-    protected $primaryKey = 'id_resultado';
 
-    public $timestamps = false;
-    
     protected $fillable = [
-        'id_sesion',
         'id_ciclista',
-        'distancia',
-        'duracion',
-        'velocidad_media',
-        'calorias_quemadas'
+        'id_sesion',
+        'fecha',
+        'duracion_real',
+        'distancia_total',
+        'potencia_media',
+        'pulso_medio',
+        'calorias',
+        'esfuerzo_percibido',
+        'comentarios_post_entreno'
     ];
 
-    // Relaciones
+    public $timestamps = true;
+
+    //relaciones
+
     public function ciclista()
     {
         return $this->belongsTo(CiclistaModel::class, 'id_ciclista');

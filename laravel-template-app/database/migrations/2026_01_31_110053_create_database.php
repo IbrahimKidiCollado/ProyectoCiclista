@@ -86,7 +86,7 @@ class CreateDatabase extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('descripcion', 255)->nullable();
-            $table->enum('tipo', ['rodaje', 'intervalos', 'fuerza', 'recuperacion', 'test']);
+            $table->string('tipo', 50)->nullable();
             $table->time('duracion_estimada')->nullable();
             $table->decimal('potencia_pct_min', 5, 2)->nullable();
             $table->decimal('potencia_pct_max', 5, 2)->nullable();
@@ -160,7 +160,7 @@ class CreateDatabase extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('nombre', 50);
-            $table->enum('tipo', ['carretera', 'mtb', 'gravel', 'rodillo']);
+            $table->string('tipo', 50)->nullable();
             $table->string('comentario', 255)->nullable();
             $table->timestamps();
         });
@@ -187,8 +187,8 @@ class CreateDatabase extends Migration
             $table->string('marca', 50);
             $table->string('modelo', 50)->nullable();
             $table->string('especificacion', 50)->nullable();
-            $table->enum('velocidad', ['9v','10v','11v','12v'])->nullable();
-            $table->enum('posicion', ['delantera', 'trasera', 'ambas'])->nullable();
+            $table->string('velocidad', 50)->nullable();
+            $table->string('estado', 50)->nullable();
             $table->date('fecha_montaje');
             $table->date('fecha_retiro')->nullable();
             $table->decimal('km_actuales', 8, 2)->default(0);

@@ -111,43 +111,44 @@ class DatabaseSeeder extends Seeder
         ]);
 
         /*
-        |--------------------------------------------------
-        | COMPONENTES BICICLETA (CORREGIDO)
-        |--------------------------------------------------
-        */
-        DB::table('componentes_bicicleta')->truncate();
-        DB::table('componentes_bicicleta')->insert([
-            [
-                'id_bicicleta'=>1,
-                'id_tipo_componente'=>1,
-                'marca'=>'Shimano',
-                'modelo'=>'Ultegra',
-                'especificacion'=>null,
-                'velocidad'=>'11v',
-                'posicion'=>'ambas',
-                'fecha_montaje'=>'2026-01-01',
-                'fecha_retiro'=>null,
-                'km_actuales'=>1200,
-                'km_max_recomendado'=>3000,
-                'activo'=>1,
-                'comentario'=>null
-            ],
-            [
-                'id_bicicleta'=>2,
-                'id_tipo_componente'=>5,
-                'marca'=>'Continental',
-                'modelo'=>'GP5000',
-                'especificacion'=>null,
-                'velocidad'=>null,
-                'posicion'=>'ambas',
-                'fecha_montaje'=>'2026-02-01',
-                'fecha_retiro'=>null,
-                'km_actuales'=>800,
-                'km_max_recomendado'=>4000,
-                'activo'=>1,
-                'comentario'=>null
-            ],
-        ]);
+|--------------------------------------------------
+| COMPONENTES BICICLETA (CORRECTO SEGÚN MIGRACIÓN)
+|--------------------------------------------------
+*/
+DB::table('componentes_bicicleta')->truncate();
+DB::table('componentes_bicicleta')->insert([
+    [
+        'id_bicicleta' => 1,
+        'id_tipo_componente' => 1,
+        'marca' => 'Shimano',
+        'modelo' => 'Ultegra',
+        'especificacion' => null,
+        'velocidad' => '11v',
+        'estado' => 'Nuevo',
+        'fecha_montaje' => '2026-01-01',
+        'fecha_retiro' => null,
+        'km_actuales' => 1200,
+        'km_max_recomendado' => 3000,
+        'activo' => 1,
+        'comentario' => null,
+    ],
+    [
+        'id_bicicleta' => 2,
+        'id_tipo_componente' => 5,
+        'marca' => 'Continental',
+        'modelo' => 'GP5000',
+        'especificacion' => null,
+        'velocidad' => null,
+        'estado' => 'En uso',
+        'fecha_montaje' => '2026-02-01',
+        'fecha_retiro' => null,
+        'km_actuales' => 800,
+        'km_max_recomendado' => 4000,
+        'activo' => 1,
+        'comentario' => null,
+    ],
+]);
+
         /*
         |--------------------------------------------------
         | RESULTADOS (EJECUCIÓN REAL)

@@ -20,19 +20,13 @@ class SesionesEntrenamientoController extends Controller
 
     public function crearsesion(Request $request)
     {
-        $datos = $request->validate([
-            'id_plan' => 'required|integer|exists:plan_entrenamiento,id',
-            'fecha' => 'required|date',
-            'nombre' => 'nullable|string|max:100',
-            'descripcion' => 'nullable|string|max:255',
-            'completada' => 'boolean'
-        ]);
+        $datos = $request->all();
 
         $sesion = SesionesEntrenamientoModel::create($datos);
 
         return response()->json([
             'status' => 'ok',
-            'accion' => 'sesion creada correctamente'
+            'accion' => $sesion
         ]);
     }
 
