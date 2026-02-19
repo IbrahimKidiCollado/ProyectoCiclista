@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\SesionesEntrenamientoModel;
+use App\Models\BloquesEntrenamientoModel;
 
 class SesionesBloquesEntrenamientoModel extends Model
 {
@@ -18,21 +19,15 @@ class SesionesBloquesEntrenamientoModel extends Model
 
     public $timestamps = false;
 
-    //Relacion entre sessionesBloqueEntrenamiento y sesionEntrenamiento
+    // Relación con la Sesión
     public function sesion()
     {
-        return $this->belongsTo(
-            SesionEntrenamiento::class,
-            'id_sesion_entrenamiento'
-        );
+        return $this->belongsTo(SesionesEntrenamientoModel::class, 'id_sesion_entrenamiento');
     }
 
-    //Relacion entre sessionesBloqueEntrenamiento y bloque
+    // Relación con el Bloque
     public function bloque()
     {
-        return $this->belongsTo(
-            BloquesEntrenamientoModel::class,
-            'id_bloque_entrenamiento'
-        );
+        return $this->belongsTo(BloquesEntrenamientoModel::class, 'id_bloque_entrenamiento');
     }
 }

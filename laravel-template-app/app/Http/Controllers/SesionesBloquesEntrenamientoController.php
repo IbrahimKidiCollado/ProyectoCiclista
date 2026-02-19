@@ -7,13 +7,25 @@ use Illuminate\Http\Request;
 
 class SesionesBloquesEntrenamientoController extends Controller
 {
-    public function listarSesionesBloques()
+   public function listarSesionesBloques()
     {
-        $sesionesBloques = SesionesBloquesEntrenamientoModel::all();
+        // Obtenemos los datos incluyendo la información de las tablas relacionadas
+        $sesionesBloques = SesionesBloquesEntrenamientoModel::with(['sesion', 'bloque'])->get();
+
+        // Reestructuramos la colección para el Frontend
+        $datosFormateados = $sesionesBloques->map(function ($item) {
+            return [
+                'ID'         => $item->id,
+                'Sesión'     => $item->sesion->nombre ?? 'Sin nombre', 
+                'Bloque'     => $item->bloque->nombre ?? 'Sin nombre',
+                'Orden'      => $item->orden,
+                'Repeticiones' => $item->repeticiones ?? 0,
+            ];
+        });
 
         return response()->json([
             'status' => 'ok',
-            'sesiones-Bloques' => $sesionesBloques
+            'sesionesBloques' => $datosFormateados 
         ]);
     }
 

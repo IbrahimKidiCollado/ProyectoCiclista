@@ -30,11 +30,16 @@ class BloquesEntrenamientoController extends Controller
             'pulso_reserva_pct' => 'nullable|integer|min:0|max:100',
             'comentario' => 'nullable|string'
         ]);
+        
         $bloque = BloquesEntrenamientoModel::create($datos);
+
+        //Bucar el que ha creado
+        $bloqueCreado = BloquesEntrenamientoModel::find($bloque->id);
 
         return response()->json([
             'status' => 'ok',
-            'accion' => 'bloque creado'
+            'accion' => 'bloque creado',
+            'bloque' => $bloqueCreado
         ]);
     }
 

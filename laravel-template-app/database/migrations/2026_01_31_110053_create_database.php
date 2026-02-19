@@ -242,6 +242,41 @@ class CreateDatabase extends Migration
             $table->index(['id_ciclista', 'fecha'], 'idx_ciclista_fecha');
             $table->index(['fecha'], 'idx_fecha');
         });
+
+        /*
+        |--------------------------------------------------
+        | RESULTADOS 
+        |--------------------------------------------------
+        */
+        Schema::create('resultados', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->id();
+
+            // ¿Quién?
+            $table->foreignId('id_ciclista')
+                ->constrained('ciclista')
+                ->cascadeOnDelete();
+
+            // ¿Qué entrenamiento/sesión hizo? (Opcional, por si fue libre)
+            $table->foreignId('id_sesion')
+                ->nullable()
+                ->constrained('sesion_entrenamiento')
+                ->nullOnDelete();
+
+            // Datos finales de la sesión
+            $table->date('fecha');
+            $table->time('duracion_real');
+            $table->decimal('distancia_total', 6, 2);
+            $table->integer('potencia_media')->nullable();
+            $table->integer('pulso_medio')->nullable();
+            $table->integer('calorias')->nullable();
+            
+            // Valoración subjetiva
+            $table->integer('esfuerzo_percibido')->comment('Escala 1-10');
+            $table->text('comentarios_post_entreno')->nullable();
+
+            $table->timestamps();
+        });
     }
 
     public function down(): void
@@ -256,5 +291,6 @@ class CreateDatabase extends Migration
         Schema::dropIfExists('plan_entrenamiento');
         Schema::dropIfExists('historico_ciclista');
         Schema::dropIfExists('ciclista');
+        Schema::dropIfExists('resultados');
     }
 }

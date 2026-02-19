@@ -1,11 +1,11 @@
 /* VARIABLES GLOBALES */
-const enlace = document.getElementById("verSesion");
-let datos = [];
+const enlace = document.getElementById("verSesionBloque");
+const datos = [];
 let id;
-let datosCopia;
 
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
+
 
 //FUNCIONES PARA TAREAS ESPECIFICAS
 
@@ -18,7 +18,7 @@ async function obtenerDatos() {
 	try {
 		
 		//EXTRAEMOS LOS DATOS DE LA TABLA 
-		const response = await fetch("/sesion", {
+		const response = await fetch("/sesionbloque", {
 			//METODO QUE USAMOS
 			method: "GET",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA
@@ -27,16 +27,14 @@ async function obtenerDatos() {
 		
 		//COMPROBAMOS QUE LA EXTRACCION A SALIDO BIEN
 		if (!response.ok) {
-			throw new Error("Error al obtener sesiones...");
+			throw new Error("Error al obtener sesiones bloque...");
 		} else {
 			//VACIAMOS LA VARIABLE GLOBAL
 			datos.length = 0;
 			//AÑADIMOS LOS DATOS AL ARRAY GLOBAL CREADO PARA LOS DATOS
 			datos.push(await response.json());
-			datosCopia = datos[0];
-			console.log(datosCopia);
 			// SI NO HUBIERA DATOS NO MOSTRAMOS NADA
-			if (!isEmpty(datosCopia)) mostrarDatos();
+			if (!isEmpty(datos)) mostrarDatos();
 		}
 	} catch(error) {
 		console.log(error);
@@ -46,7 +44,7 @@ async function obtenerDatos() {
 /* TRATAMIENTO DE DATOS */
 function obtenerTitulos() {
 	const titulos = [];
-	let nombres = datosCopia["sesion"];
+	let nombres = datos[0].sesionesBloques;
 
 	Object.keys(nombres[0]).forEach(d => titulos.push(d));
 
@@ -57,13 +55,42 @@ function mostrarDatos() {
 	/* VARIABLES */
 	const contenedor = document.getElementById("main");
 	const table = document.createElement("table");
+
+	
 	
 	//INVOCAMOS FUNCIONES QUE CREAR LAS PARTES DE LA TABLA E INSERTAMOS EN LA MISMA
-	table.append(creacionCabecera(), creacionCuerpo());
+	table.append(creacionBoton(),creacionCabecera(), creacionCuerpo());
 	//VACIAMOS CONTENEDOR DE MUESTREO PARA QUE NO SE APILEN LAS TABLAS
 	contenedor.innerHTML = "";
 	//INSERTAMOS LA TABLA FINAL
 	contenedor.append(table);
+}
+
+function creacionBoton(){
+	const boton = document.createElement("button");
+	boton.textContent = "Añadir bloque";
+	boton.setAttribute("id", "add");
+	boton.addEventListener("click", function() {
+		//Hacemos peticion por get para que muestre el formulario de creacion de bloque
+		//Hacemos una peticion a /sesionBloque/crear para que redirija a la view crearSesionBloque
+		//Recibe una view, quiero que redirija a esa view y que se muestre el formulario de creacion de bloque
+		fetch("/sesionBloque/crear", {
+			method: "GET",
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error("Error al obtener el formulario de creación de bloque...");
+			}
+			
+			window.location.href = "/sesionBloque/crear";
+		})
+		.catch(error => {
+			console.log(error);
+		});
+
+	});
+
+	return boton;
 }
 
 // CREACION DE LA CABECERA CON LOS TITULOS DINAMICOS DE LAS TABLAS
@@ -91,7 +118,7 @@ function creacionCabecera() {
 function creacionCuerpo() {
 	//VARIABLES
 	const tbody = document.createElement("tbody");
-	const arrayDatos = datosCopia["sesion"];
+	const arrayDatos = datos[0].sesionesBloques;
 
 	// ACCEDEMOS AL ARRAY DE OBJETOS
 	arrayDatos.forEach(objeto => {
@@ -106,7 +133,7 @@ function creacionCuerpo() {
             td.textContent = valor;
             tr.append(td);
         });
-		//Boton para eliminar la sesion
+
 		let td = document.createElement("td");
 
 		let boton = document.createElement("button");
@@ -122,14 +149,13 @@ function creacionCuerpo() {
 	return tbody;
 }
 
-//Borrar una sesion
 async function eliminar(e) {
 	//obtener el id del seleccionado
 	id = e.target.parentElement.parentElement.firstChild.textContent;
 
 	console.log(id)
 	try {
-		let url = "/sesion/"+id;
+		let url = "/sesionbloque/"+id;
 		const respuesta = await fetch(url, {
 			method:"DELETE",
 		})

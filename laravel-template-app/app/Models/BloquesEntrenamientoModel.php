@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class BloquesEntrenamientoModel extends Model
 {
 
-
     protected $table = 'bloque_entrenamiento';
 
     public $timestamps = false;

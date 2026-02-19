@@ -138,5 +138,5 @@ async function eliminar(e) {
 		console.log(error);
 	}
 
-	mostrarDatos();
+	obtenerDatos();
 }

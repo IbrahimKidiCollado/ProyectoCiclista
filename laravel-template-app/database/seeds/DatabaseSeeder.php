@@ -148,7 +148,58 @@ class DatabaseSeeder extends Seeder
                 'comentario'=>null
             ],
         ]);
+        /*
+        |--------------------------------------------------
+        | RESULTADOS (EJECUCIÓN REAL)
+        |--------------------------------------------------
+        */
+        DB::table('resultados')->truncate();
+        DB::table('resultados')->insert([
+            [
+                'id_ciclista' => 1,
+                'id_sesion' => 1,    // Vinculado a "Rodaje Base"
+                'fecha' => '2026-01-05',
+                'duracion_real' => '01:15:00',
+                'distancia_total' => 35.50,
+                'potencia_media' => 195,
+                'pulso_medio' => 135,
+                'calorias' => 750,
+                'esfuerzo_percibido' => 4,
+                'comentarios_post_entreno' => 'Rodaje cómodo, buenas sensaciones.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_ciclista' => 1,
+                'id_sesion' => 2,    // Vinculado a "Sweet Spot"
+                'fecha' => '2026-01-07',
+                'duracion_real' => '00:55:00',
+                'distancia_total' => 28.20,
+                'potencia_media' => 230,
+                'pulso_medio' => 155,
+                'calorias' => 680,
+                'esfuerzo_percibido' => 8,
+                'comentarios_post_entreno' => 'Intervalos duros, pero mantenidos en vatios.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_ciclista' => 2,
+                'id_sesion' => null, // Salida libre (sin sesión previa)
+                'fecha' => '2026-01-20',
+                'duracion_real' => '02:30:00',
+                'distancia_total' => 65.00,
+                'potencia_media' => 160,
+                'pulso_medio' => 125,
+                'calorias' => 1200,
+                'esfuerzo_percibido' => 6,
+                'comentarios_post_entreno' => 'Salida de fin de semana por pistas.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
+    
 }

@@ -42,7 +42,8 @@ class LoginControllerAPI extends Controller
             'ciclista_nombre' => $ciclista->nombre
         ]);
 
-        return view('index');
+        //Ruta para redirigir al index
+        return redirect('/index');
 
     }
 

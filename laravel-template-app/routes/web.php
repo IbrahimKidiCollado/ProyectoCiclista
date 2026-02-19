@@ -25,10 +25,6 @@ Route::post('/login-test', function () {
     ]);
 });
 
-Route::get('/', function () {
-    /*  */
-    return view('index');
-});
 
 
 //RUTAS PARA LA AUTENTICACION
@@ -36,6 +32,11 @@ Route::post('/login', [LoginControllerAPI::class, 'comprobarCredenciales'])->nam
 Route::post('/usuario-sesion', [LoginControllerAPI::class, 'obtenerUsuarioSesion']);
 Route::post('/logout', [LoginControllerAPI::class, 'cerrarSesion'])->name('logout.salirse');
 Route::post('/register', [LoginControllerAPI::class, 'darseAlta'])->name('register.alta');
+
+//RUTA PARA EL INDEX
+Route::get('/index', function () {
+    return view('index');
+})->name('index');
 
 //RUTAS PARA CICLISTA
 Route::get('/ciclistas', [CiclistaController::class, 'listarCiclistas'])->name('ciclistas.listar');
@@ -66,6 +67,7 @@ Route::get('/sesion/{id}', [SesionesEntrenamientoController::class, 'listarsesio
 //RUTAS PARA RESULTADOS DE ENTRENAMIENTO
 Route::post('/resultado/crear', [ResultadosEntrenamientoController::class, 'crearResultado'])->name('resultado.crear');
 Route::get('/resultado/{id}', [ResultadosEntrenamientoController::class, 'listarResultadoID'])->name('resultado.listar');
+Route::get('/resultados', [ResultadosEntrenamientoController::class, 'listarResultados'])->name('resultados.listar');
 
 //RUTAS PARA SESIONES-PLANES ENTRENAMIENTO
 Route::get('/sesionbloque', [SesionesBloquesEntrenamientoController::class, 'listarSesionesBloques'])->name('sesionbloque.listar');

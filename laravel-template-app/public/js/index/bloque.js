@@ -73,18 +73,16 @@ function creacionBoton(){
 	boton.addEventListener("click", function() {
 		//Hacemos peticion por get para que muestre el formulario de creacion de bloque
 		//Hacemos una peticion a /bloque/crear para que redirija a la view crearBloque
+		//Recibe una view, quiero que redirija a esa view y que se muestre el formulario de creacion de bloque
 		fetch("/bloque/crear", {
 			method: "GET",
 		})
 		.then(response => {
 			if (!response.ok) {
-				throw new Error("Error al cargar el formulario de creación de bloque...");
+				throw new Error("Error al obtener el formulario de creación de bloque...");
 			}
-			return response.text();
-		})
-		.then(html => {
-			const contenedor = document.getElementById("main");
-			contenedor.innerHTML = html;
+			
+			window.location.href = "/bloque/crear";
 		})
 		.catch(error => {
 			console.log(error);
