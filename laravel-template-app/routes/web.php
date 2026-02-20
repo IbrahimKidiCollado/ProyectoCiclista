@@ -75,6 +75,9 @@ Route::get('/sesion/crear', function () {
 Route::post('/resultado/crear', [ResultadosEntrenamientoController::class, 'crearResultado'])->name('resultado.crear');
 Route::get('/resultado/{id}', [ResultadosEntrenamientoController::class, 'listarResultadoID'])->name('resultado.listar');
 Route::get('/resultados', [ResultadosEntrenamientoController::class, 'listarResultados'])->name('resultados.listar');
+Route::get('/resultados/crear', function () {
+    return view('crearResultados');
+});
 
 //RUTAS PARA SESIONES-PLANES ENTRENAMIENTO
 Route::get('/sesionbloque', [SesionesBloquesEntrenamientoController::class, 'listarSesionesBloques'])->name('sesionbloque.listar');

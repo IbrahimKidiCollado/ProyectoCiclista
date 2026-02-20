@@ -1,0 +1,72 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Bloque</title>
+        <link rel="stylesheet" href="/css/inicio.css">
+        <link rel="stylesheet" href="/css/genericos/formularios.css">
+        <script src="/js/genericos/alertas.js" defer></script>
+        <script src="/js/index/crearResultados.js" type="module" defer></script>
+    </head>
+    <body>
+        <div class="main-content" id="main">
+            <div class="form-container">
+                <form id="envioResultados">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ID CICLISTA</label>
+                            <input type="number" name="id_ciclista" placeholder="Ej: 1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>ID SESIÓN PLANIFICADA</label>
+                            <input type="number" name="id_sesion_planificada" placeholder="Ej: 5" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>FECHA REAL</label>
+                            <input type="date" name="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label>DURACIÓN REAL (HH:MM:SS)</label>
+                            <input type="text" name="duracion" placeholder="01:15:00" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>DISTANCIA (KM)</label>
+                            <input type="number" step="0.01" name="distancia_km" placeholder="35.50">
+                        </div>
+                        <div class="form-group">
+                            <label>VATIOS MEDIOS</label>
+                            <input type="number" name="vatios_medios" placeholder="195">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>PULSO MEDIO</label>
+                            <input type="number" name="pulso_medio" placeholder="135">
+                        </div>
+                        <div class="form-group">
+                            <label>ESFUERZO (RPE 1-10)</label>
+                            <input type="number" name="esfuerzo_rpe" min="1" max="10" placeholder="4">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>COMENTARIO / SENSACIONES</label>
+                        <textarea name="comentario" rows="3" placeholder="Rodaje cómodo, buenas sensaciones..."></textarea>
+                    </div>
+
+                <button type="submit" class="btn-submit">Guardar Feedback de Sesión</button>
+            </form>
+        </div>
+    </div>
+        
+    </body>
+    </html>

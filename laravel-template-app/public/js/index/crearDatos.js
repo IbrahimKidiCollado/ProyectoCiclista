@@ -1,10 +1,12 @@
 // VARIABLES GLOBALES
 const enlace = document.getElementById("crear");
 const contenedor = document.getElementById("main");
+const enlaceResultado = document.getElementById("crearResultadoSesion");
 let eleccion;
 
 //ESCUCHADORES
 enlace.addEventListener("click", mostrarFormularioDeEleccion);
+enlaceResultado.addEventListener("click", crearResultados);
 
 //FORMULARIO PARA LA ELECCION DEL ENTRENAMIENTO QUE HAY QUE CREAR
 function mostrarFormularioDeEleccion() {
@@ -43,6 +45,10 @@ function FormularioAdaptado(e) {
     } else if (valores.entrenamientos == "SesionBloque") {
         crearSesionBloque();
     }
+}
+
+function crearResultados() {
+    window.location.href = "/resultados/crear";
 }
 
 function crearBloque() {

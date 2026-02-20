@@ -46,7 +46,11 @@ function obtenerTitulos() {
 	const titulos = [];
 	let nombres = datos[0].ciclistas;
 
-	Object.keys(nombres[0]).forEach(d => titulos.push(d));
+	Object.keys(nombres[0]).forEach(d => {
+		if (!(d == "created_at" || d == "updated_at")) {
+			titulos.push(d)
+		}
+	});
 
 	return titulos;
 }
@@ -99,7 +103,7 @@ function creacionCuerpo() {
         valores.forEach(valor => {
             const td = document.createElement("td");
             td.textContent = valor;
-            tr.append(td);
+			if (td.textContent !== "") tr.append(td);
         });
         tbody.append(tr);
     });
