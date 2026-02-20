@@ -6,9 +6,7 @@ let id;
 /* ESCUCHADORES */
 enlace.addEventListener("click", obtenerDatos);
 
-
 //FUNCIONES PARA TAREAS ESPECIFICAS
-
 function isEmpty(obj) {return !obj || obj.length === 0;}
 
 /* FUNCIONES CORRIENTES */
