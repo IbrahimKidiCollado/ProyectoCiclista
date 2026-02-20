@@ -57,12 +57,18 @@ Route::get('/plan', [PlanesEntrenamientoController::class, 'listarPlanes'])->nam
 Route::post('/plan/crear', [PlanesEntrenamientoController::class, 'crearPlan'])->name('plan.crear');
 Route::put('/plan/{id}', [PlanesEntrenamientoController::class, 'modificarPlan'])->name('plan.modificar');
 Route::delete('/plan/{id}', [PlanesEntrenamientoController::class, 'eliminarPlan'])->name('plan.eliminar');
+Route::get('/plan/crear', function () {
+    return view('crearPlan');
+});
 
 //RUTAS PARA SESIONES DE ENTRENAMIENTO
 Route::get('/sesion', [SesionesEntrenamientoController::class, 'listarsesiones'])->name('sesiones.listar');
 Route::post('/sesion/crear', [SesionesEntrenamientoController::class, 'crearsesion'])->name('sesion.crear');
 Route::delete('/sesion/{id}', [SesionesEntrenamientoController::class, 'eliminarsesion'])->name('sesion.eliminar');
 Route::get('/sesion/{id}', [SesionesEntrenamientoController::class, 'listarsesionID'])->name('sesion.listar');
+Route::get('/sesion/crear', function () {
+    return view('crearSesion');
+});
 
 //RUTAS PARA RESULTADOS DE ENTRENAMIENTO
 Route::post('/resultado/crear', [ResultadosEntrenamientoController::class, 'crearResultado'])->name('resultado.crear');

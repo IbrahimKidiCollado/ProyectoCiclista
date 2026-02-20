@@ -3,7 +3,6 @@ const formulario = document.getElementById("envioBloque");
 /* ESCUCHADORES */
 formulario.addEventListener("submit", crear);
 
-
 console.log("Estamos en crear bloque")
 console.log(formulario)
 /* ENVIO DE DATOS */
@@ -44,6 +43,7 @@ async function crear(e) {
 		if (response.ok) {
 			//REDIRIGIMOS A LA PAGINA DE BLOQUES
 			console.log(response);
+			window.location.href = "/index";
 		}
 		
 	} catch(error) {

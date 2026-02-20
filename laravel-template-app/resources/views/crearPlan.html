@@ -1,25 +1,61 @@
 
-    <div class="main-content" id="main">
-        <form>
-            <label for="nombre">Añade nombre del bloque de entrenamiento</label>
-            <input type="text" name="nombre" placeholder="Sentadillas...">
-            <label for="descripcion">Añade una sesion para el bloque: </label>
-            <input type="text" name="descripcion" placeholder="Profundas...">
-            <label for="tipo">Añade el tipo de bloque: </label>
-            <input type="text" name="tipo" placeholder="Bulgaras...">
-            <label for="duracion">Añade la duracion estimada: </label>
-            <input type="time" name="duracion" step="1" value="00:30:00">
-            <label for="potencia_min">Añade la potencia min: </label>
-            <input type="number" name="potencia_min" placeholder="50">
-            <label for="potencia_max">Añade la potencia max: </label>
-            <input type="number" name="potencia_max" placeholder="80">
-            <label for="pulso_max">Añade el pulso maximo que se debera tener: </label>
-            <input type="number" name="pulso_max" placeholder="75">
-            <label for="pulso_min">Añade el pulso minimo que se debera tener: </label>
-            <input type="number" name="pulso_min" placeholder="60">
-            <label for="comentario">Añade un comentario si lo ves necesario</label>
-            <textarea name="comentario" rows="5" cols="4" id="comentario" placeholder="Deben de quemar..."></textarea>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Bloque</title>
+        <link rel="stylesheet" href="/css/inicio.css">
+        <link rel="stylesheet" href="/css/genericos/formularios.css">
+        <script src="/js/genericos/alertas.js" defer></script>
+        <script src="/js/index/crearPlan.js" type="module" defer></script>
+    </head>
+    <body>
+        <div class="main-content" id="main">
+        <form id="envioPlan">
+        <div class="form-group">
+            <label>ID CICLISTA</label>
+            <input type="number" name="id_ciclista" placeholder="Ej: 1" required>
+        </div>
 
-            <button class="btn-enviar">Enviar</button>
-        </form>
+        <div class="form-group">
+            <label>NOMBRE DEL PLAN</label>
+            <input type="text" name="nombre" placeholder="Ej: Plan Base 2026" required>
+        </div>
+
+        <div class="form-group">
+            <label>DESCRIPCIÓN</label>
+            <textarea name="descripcion" placeholder="Ej: Base aeróbica" rows="2"></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>FECHA INICIO</label>
+                <input type="date" name="fecha_inicio" required>
+            </div>
+            <div class="form-group">
+                <label>FECHA FIN</label>
+                <input type="date" name="fecha_fin" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>OBJETIVO</label>
+                <input type="text" name="objetivo" placeholder="Ej: Resistencia">
+            </div>
+            <div class="form-group">
+                <label>ACTIVO</label>
+                <select name="activo">
+                    <option value="1">Sí (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Guardar Plan en Sesión</button>
+    </form>
     </div>
+        
+    </body>
+    </html>
