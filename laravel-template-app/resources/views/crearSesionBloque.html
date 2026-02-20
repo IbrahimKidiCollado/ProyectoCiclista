@@ -1,0 +1,43 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Sesion</title>
+        <link rel="stylesheet" href="/css/inicio.css">
+        <link rel="stylesheet" href="/css/genericos/formularios.css">
+        <script src="/js/genericos/alertas.js" defer></script>
+        <script src="/js/index/crearSesionBloque.js" type="module" defer></script>
+    </head>
+    <body>
+        <div class="main-content" id="main">
+            <form id="envioSesionBloque">
+        <div class="form-group">
+            <label>SESIÓN</label>
+            <input type="text" name="sesion" placeholder="Ej: Rodaje Base o Sweet Spot" required>
+        </div>
+
+        <div class="form-group">
+            <label>BLOQUE</label>
+            <input type="text" name="bloque" placeholder="Ej: Calentamiento, Z2, Recuperación" required>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>ORDEN</label>
+                <input type="number" name="orden" min="1" placeholder="Ej: 1" required>
+            </div>
+
+            <div class="form-group">
+                <label>REPETICIONES</label>
+                <input type="number" name="repeticiones" min="1" placeholder="Ej: 3" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Añadir Bloque a la Sesión</button>
+    </form>
+        </div>
+        
+    </body>
+    </html>

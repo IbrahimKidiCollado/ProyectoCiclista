@@ -46,7 +46,11 @@ function obtenerTitulos() {
 	const titulos = [];
 	let nombres = datos[0].sesionesBloques;
 
-	Object.keys(nombres[0]).forEach(d => titulos.push(d));
+	Object.keys(nombres[0]).forEach(d => {
+		if (d !== "created_at" || d !== "updated_at") {
+			titulos.push(d)
+		}
+	});
 
 	return titulos;
 }
@@ -56,41 +60,12 @@ function mostrarDatos() {
 	const contenedor = document.getElementById("main");
 	const table = document.createElement("table");
 
-	
-	
 	//INVOCAMOS FUNCIONES QUE CREAR LAS PARTES DE LA TABLA E INSERTAMOS EN LA MISMA
-	table.append(creacionBoton(),creacionCabecera(), creacionCuerpo());
+	table.append(creacionCabecera(), creacionCuerpo());
 	//VACIAMOS CONTENEDOR DE MUESTREO PARA QUE NO SE APILEN LAS TABLAS
 	contenedor.innerHTML = "";
 	//INSERTAMOS LA TABLA FINAL
 	contenedor.append(table);
-}
-
-function creacionBoton(){
-	const boton = document.createElement("button");
-	boton.textContent = "Añadir bloque";
-	boton.setAttribute("id", "add");
-	boton.addEventListener("click", function() {
-		//Hacemos peticion por get para que muestre el formulario de creacion de bloque
-		//Hacemos una peticion a /sesionBloque/crear para que redirija a la view crearSesionBloque
-		//Recibe una view, quiero que redirija a esa view y que se muestre el formulario de creacion de bloque
-		fetch("/sesionBloque/crear", {
-			method: "GET",
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error("Error al obtener el formulario de creación de bloque...");
-			}
-			
-			window.location.href = "/sesionBloque/crear";
-		})
-		.catch(error => {
-			console.log(error);
-		});
-
-	});
-
-	return boton;
 }
 
 // CREACION DE LA CABECERA CON LOS TITULOS DINAMICOS DE LAS TABLAS
@@ -131,7 +106,9 @@ function creacionCuerpo() {
         valores.forEach(valor => {
             const td = document.createElement("td");
             td.textContent = valor;
-            tr.append(td);
+			if (!(td.textContent == "")) {
+				tr.append(td);
+			}
         });
 
 		let td = document.createElement("td");

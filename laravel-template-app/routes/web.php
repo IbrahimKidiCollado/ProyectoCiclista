@@ -80,3 +80,6 @@ Route::get('/resultados', [ResultadosEntrenamientoController::class, 'listarResu
 Route::get('/sesionbloque', [SesionesBloquesEntrenamientoController::class, 'listarSesionesBloques'])->name('sesionbloque.listar');
 Route::post('/sesionbloque/crear', [SesionesBloquesEntrenamientoController::class, 'crearSesionBloque'])->name('sesionbloque.crear');
 Route::delete('/sesionbloque/{id}', [SesionesBloquesEntrenamientoController::class, 'borrarSesionBloque'])->name('sesionbloque.eliminar');
+Route::get('/sesionbloque/crear', function () {
+    return view('crearSesion');
+});

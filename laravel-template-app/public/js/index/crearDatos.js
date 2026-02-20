@@ -16,6 +16,7 @@ function mostrarFormularioDeEleccion() {
                 <option value="Bloques">Bloques</option>
                 <option value="Sesiones">Sesiones</option>
                 <option value="Planes">Planes</option>
+                <option value="SesionBloque">Sesiones Bloques</option>
             </select>
             <button type="submit" id="enviarEleccionCrear">Enviar</button>
         </form>
@@ -39,6 +40,8 @@ function FormularioAdaptado(e) {
         crearSesion();
     } else if (valores.entrenamientos == "Planes") {
         crearPlan();
+    } else if (valores.entrenamientos == "SesionBloque") {
+        crearSesionBloque();
     }
 }
 
@@ -52,4 +55,8 @@ function crearSesion() {
 
 function crearPlan() {
     window.location.href = "/plan/crear";
+}
+
+function crearSesionBloque() {
+    window.location.href = "/sesionbloque/crear";
 }
