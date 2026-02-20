@@ -11,8 +11,17 @@ async function crear(e) {
 
 	try {
 		const fd = new FormData(formulario);
-    
-        const datos = Object.fromEntries(fd.entries());
+        const datosRaw = Object.fromEntries(fd.entries());
+
+        const datos = {
+        id_ciclista: Number(datosRaw.id_ciclista), // Forzamos a número
+        nombre: datosRaw.nombre,
+        descripcion: datosRaw.descripcion,
+        fecha_inicio: datosRaw.fecha_inicio,
+        fecha_fin: datosRaw.fecha_fin,
+        objetivo: datosRaw.objetivo,
+        activo: Number(datosRaw.activo) // El select envía "1", lo pasamos a 1
+        };
         
         const response = await fetch("/plan/crear", {
 			//METODO QUE USAMOS
