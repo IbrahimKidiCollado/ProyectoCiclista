@@ -60,6 +60,7 @@ Route::delete('/plan/{id}', [PlanesEntrenamientoController::class, 'eliminarPlan
 Route::get('/plan/crear', function () {
     return view('crearPlan');
 });
+Route::get('/plan/{id}', [PlanesEntrenamientoController::class, 'listarPlanID'])->name('plan.listar');
 
 //RUTAS PARA SESIONES DE ENTRENAMIENTO
 Route::get('/sesion', [SesionesEntrenamientoController::class, 'listarsesiones'])->name('sesiones.listar');
