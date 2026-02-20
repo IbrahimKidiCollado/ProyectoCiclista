@@ -13,20 +13,21 @@ async function crear(e) {
 		const fd = new FormData(formulario);
         const datosRaw = Object.fromEntries(fd.entries());
 
-        const datos = {
-        id_ciclista: Number(datosRaw.id_ciclista),
-        id_sesion: datosRaw.id_sesion ? Number(datosRaw.id_sesion) : null,
-        fecha: datosRaw.fecha,
-        duracion_real: datosRaw.duracion_real, // Formato "HH:MM:SS"
-        distancia_total: parseFloat(datosRaw.distancia_total),
-        potencia_media: Number(datosRaw.potencia_media),
-        pulso_medio: Number(datosRaw.pulso_medio),
-        calorias: Number(datosRaw.calorias),
-        esfuerzo_percibido: Number(datosRaw.esfuerzo_percibido),
-        comentarios_post_entreno: datosRaw.comentarios_post_entreno
-    };
         
-        const response = await fetch("/resultados/crear", {
+		const datos = {
+			id_ciclista: Number(datosRaw.id_ciclista) || 0,
+			id_sesion: datosRaw.id_sesion_planificada ? Number(datosRaw.id_sesion_planificada) : null,
+			fecha: datosRaw.fecha,
+			duracion_real: datosRaw.duracion, 
+			distancia_total: parseFloat(datosRaw.distancia_km) || 0, 
+			potencia_media: Number(datosRaw.vatios_medios) || 0,
+			pulso_medio: Number(datosRaw.pulso_medio) || 0,
+			esfuerzo_percibido: Number(datosRaw.esfuerzo_rpe) || 0,
+			calorias: Number(datosRaw.calorias) || 0, 
+			comentarios_post_entreno: datosRaw.comentario || ""
+		};
+        
+        const response = await fetch("/resultado/crear", {
 			//METODO QUE USAMOS
 			method: "POST",
 			//TIEMPO QUE VAMOS A ESPERAR LA RESPUESTA

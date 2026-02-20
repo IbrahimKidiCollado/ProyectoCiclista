@@ -63,13 +63,14 @@ Route::get('/plan/crear', function () {
 Route::get('/plan/{id}', [PlanesEntrenamientoController::class, 'listarPlanID'])->name('plan.listar');
 
 //RUTAS PARA SESIONES DE ENTRENAMIENTO
+Route::get('/sesion/crear', function () {
+    return view('crearSesion');
+});
 Route::get('/sesion', [SesionesEntrenamientoController::class, 'listarsesiones'])->name('sesiones.listar');
 Route::post('/sesion/crear', [SesionesEntrenamientoController::class, 'crearsesion'])->name('sesion.crear');
 Route::delete('/sesion/{id}', [SesionesEntrenamientoController::class, 'eliminarsesion'])->name('sesion.eliminar');
 Route::get('/sesion/{id}', [SesionesEntrenamientoController::class, 'listarsesionID'])->name('sesion.listar');
-Route::get('/sesion/crear', function () {
-    return view('crearSesion');
-});
+
 
 //RUTAS PARA RESULTADOS DE ENTRENAMIENTO
 Route::post('/resultado/crear', [ResultadosEntrenamientoController::class, 'crearResultado'])->name('resultado.crear');
