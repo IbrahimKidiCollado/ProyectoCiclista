@@ -16,6 +16,15 @@ class PlanesEntrenamientoController extends Controller
         ]);
     }
 
+    public function listarPlanID($id)
+    {
+        $plan = PlanesEntrenamientoModel::findOrFail($id);
+        return response()->json([
+            'status' => 'ok',
+            'plan' => $plan
+        ]);
+    }
+
     public function crearPlan(Request $request)
     {
         $data = $request->all();   
